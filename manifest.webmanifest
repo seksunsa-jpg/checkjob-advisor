@@ -1,0 +1,26 @@
+{
+  "name": "เช็คผลสำเร็จการศึกษา (อาจารย์ที่ปรึกษา)",
+  "short_name": "ตรวจจบ นิเทศ",
+  "description": "ตรวจสอบหน่วยกิตและเงื่อนไขสำเร็จการศึกษา สาขาวิชานิเทศศาสตร์ คณะวิทยาการจัดการ มหาวิทยาลัยราชภัฏอุดรธานี",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FBF7FA",
+  "theme_color": "#1B3A6B",
+  "lang": "th",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

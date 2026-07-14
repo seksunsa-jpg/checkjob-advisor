@@ -201,6 +201,25 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 .sign div{flex:1}
 .sign u{display:block;margin-bottom:6px;color:transparent}
 
+
+/* ---------- เครดิตผู้พัฒนา ---------- */
+.credit{
+  max-width:1180px;margin:26px auto 0;padding:16px 16px 26px;
+  border-top:1px solid var(--line);
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  font-size:12.5px;color:var(--ink-2);
+}
+.credit .who{font-weight:600;color:var(--ink)}
+.credit .bar{width:3px;height:26px;border-radius:2px;
+  background:linear-gradient(#1B3A6B,#C8386F);flex:none}
+.credit .sp{margin-left:auto}
+.print-credit{display:none}
+@media print{
+  .credit{display:none}
+  .print-credit{display:block;margin-top:20px;padding-top:8px;border-top:1px solid #999;
+    font-size:11px;text-align:center;color:#555}
+}
+
 @media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
 </style>
 </head>
@@ -418,6 +437,16 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 </section>
 
 </main>
+
+<footer class="credit">
+  <span class="bar"></span>
+  <span>
+    <span class="who">พัฒนาโดย ผศ.ดร.เสกสรร สายสีสด</span><br>
+    สาขาวิชานิเทศศาสตร์ คณะวิทยาการจัดการ มหาวิทยาลัยราชภัฏอุดรธานี
+  </span>
+  <span class="sp">ระบบสารสนเทศเช็คผลการสำเร็จการศึกษา · เวอร์ชัน 1.0 (2569)</span>
+</footer>
+
 
 <!-- ========== ใบตรวจจบรายบุคคล ========== -->
 <div class="sheet" id="sheet">
@@ -1274,6 +1303,8 @@ function openSheet(sid){
   <p class="small muted" style="margin-top:14px">
     เอกสารนี้เป็นเครื่องมือช่วยตรวจสอบเบื้องต้นสำหรับอาจารย์ที่ปรึกษา ผลอย่างเป็นทางการให้ยึดตามสำนักส่งเสริมวิชาการและงานทะเบียน
   </p>
+
+  <div class="print-credit">ระบบสารสนเทศเช็คผลการสำเร็จการศึกษา — พัฒนาโดย ผศ.ดร.เสกสรร สายสีสด สาขาวิชานิเทศศาสตร์ คณะวิทยาการจัดการ มหาวิทยาลัยราชภัฏอุดรธานี</div>
 
   <div class="print-only sign">
     <div><u>_</u>ลงชื่อ ..................................................<br>( ${esc(DB.cfg.officer||"อาจารย์ที่ปรึกษา")} )<br>ผู้ตรวจสอบ</div>

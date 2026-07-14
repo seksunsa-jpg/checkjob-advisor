@@ -3,204 +3,137 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ระบบสารสนเทศเช็คผลการสำเร็จการศึกษา (อาจารย์ที่ปรึกษา) — นิเทศศาสตร์ ม.ราชภัฏอุดรธานี</title>
+<title>ระบบสารสนเทศเช็คผลการสำเร็จการศึกษา — นิเทศศาสตร์ ม.ราชภัฏอุดรธานี</title>
 <link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#1B3A6B">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="ตรวจจบ นิเทศ">
+<meta name="apple-mobile-web-app-title" content="เช็คจบ นิเทศ">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Sans+Thai+Looped:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#FBF7FA;
-  --card:#FFFFFF;
-  --ink:#16202E;
-  --ink-2:#5C6B80;
-  --line:#EAE0EA;
-  --navy:#1B3A6B;--pink:#D6336C;--orange:#1B3A6B;
-  --orange-soft:#FCE9F1;
-  --amber:#E5A00D;
-  --green:#2B8A5A;
-  --red:#C92A2A;
-  --slate:#98A2AC;
-  --radius:14px;
-  --shadow:0 1px 0 var(--line), 0 6px 18px -12px rgba(22,32,46,.28);
+  --paper:#FBF7FA;--card:#fff;--ink:#16202E;--ink-2:#5C6B80;--line:#EAE0EA;
+  --navy:#1B3A6B;--pink:#D6336C;--orange:#1B3A6B;--orange-soft:#FCE9F1;--amber:#E5A00D;--green:#2B8A5A;--red:#C92A2A;--slate:#98A2AC;
+  --shadow:0 1px 0 var(--line),0 6px 18px -12px rgba(22,32,46,.28);
 }
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{
-  background:var(--paper);
-  color:var(--ink);
-  font-family:"IBM Plex Sans Thai",system-ui,sans-serif;
-  font-size:15px;line-height:1.6;
-  -webkit-text-size-adjust:100%;
-}
-h1,h2,h3,.display{font-family:"Bai Jamjuree","IBM Plex Sans Thai",sans-serif;font-weight:600;letter-spacing:.2px}
-button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
-a{color:var(--orange)}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans Thai",system-ui,sans-serif;font-size:15px;line-height:1.6}
+h1,h2,h3,.display{font-family:"Bai Jamjuree","IBM Plex Sans Thai",sans-serif;font-weight:600}
+button,input,select{font-family:inherit;font-size:inherit;color:inherit}
 
-/* ---------- โครงหน้า ---------- */
-.topbar{
-  position:sticky;top:0;z-index:50;
-  background:linear-gradient(100deg,#1B3A6B 0%,#2C4E88 42%,#C8386F 100%);
-  color:#fff;
-  border-bottom:3px solid #F06595;
-}
-.topbar-in{max-width:1180px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.brand{display:flex;align-items:center;gap:10px;margin-right:auto}
-.avatar-sm{width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid var(--line);background:#fff;flex:none}
+.topbar{position:sticky;top:0;z-index:50;background:linear-gradient(100deg,#1B3A6B 0%,#2C4E88 42%,#C8386F 100%);color:#fff;border-bottom:3px solid #F06595}
+.topbar-in{max-width:1060px;margin:0 auto;padding:11px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;margin-right:auto}
+.avatar{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--line);background:#fff;display:block}
+.avatar-ph{width:96px;height:96px;border-radius:50%;border:3px dashed var(--line);background:var(--orange-soft);display:grid;place-items:center;color:#C8386F;font-size:12px;text-align:center;line-height:1.3}
+.avatar-sm{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid var(--line);background:#fff;flex:none}
 .avatar-md{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid var(--line);background:#fff;flex:none}
-.avatar-ph{width:36px;height:36px;border-radius:50%;border:1px dashed var(--line);background:var(--orange-soft);display:grid;place-items:center;color:#C8386F;font-size:15px}
 .logos{display:flex;align-items:center;gap:6px}
-.logos img{height:38px;width:38px;object-fit:contain;background:#fff;border-radius:9px;padding:3px;flex:none}
+.logos img{height:36px;width:36px;object-fit:contain;background:#fff;border-radius:9px;padding:3px;flex:none}
 .print-logos{display:flex;justify-content:center;gap:14px;margin-bottom:8px}
 .print-logos img{height:56px;width:56px;object-fit:contain}
-.logo-box{display:flex;gap:12px;flex-wrap:wrap}
-.logo-slot{flex:1;min-width:150px;text-align:center;border:1px dashed var(--line);border-radius:12px;padding:12px}
-.logo-slot img{height:64px;width:64px;object-fit:contain;display:block;margin:0 auto 8px}
-.logo-slot .ph{height:64px;width:64px;margin:0 auto 8px;border-radius:12px;background:var(--orange-soft);display:grid;place-items:center;color:var(--navy);font-family:"Bai Jamjuree";font-weight:700;font-size:12px}
-.brand .mark{
-  width:36px;height:36px;border-radius:9px;background:#fff;color:#C8386F;
-  display:grid;place-items:center;font-family:"Bai Jamjuree";font-weight:700;font-size:18px;flex:none;
-}
-.brand b{display:block;font-family:"Bai Jamjuree";font-weight:600;font-size:16px;line-height:1.25}
-.brand span{display:block;font-size:12px;opacity:.85}
-nav.tabs{display:flex;gap:4px;flex-wrap:wrap}
-nav.tabs button{
-  background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:999px;
-  padding:7px 14px;cursor:pointer;font-weight:500;
-}
-nav.tabs button:hover{background:rgba(255,255,255,.26)}
-nav.tabs button[aria-current="true"]{background:#fff;color:var(--orange);font-weight:600}
-main{max-width:1180px;margin:0 auto;padding:22px 16px 80px}
-.page{display:none}
-.page.on{display:block;animation:fade .25s ease}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.logo-box{display:flex;gap:10px;flex-wrap:wrap}
+.logo-slot{flex:1;min-width:120px;text-align:center;border:1px dashed var(--line);border-radius:12px;padding:10px}
+.logo-slot img{height:56px;width:56px;object-fit:contain;display:block;margin:0 auto 6px}
+.logo-slot .ph{height:56px;width:56px;margin:0 auto 6px;border-radius:12px;background:var(--orange-soft);display:grid;place-items:center;color:var(--navy);font-family:"Bai Jamjuree";font-weight:700;font-size:11px}
+.brand .mark{width:34px;height:34px;border-radius:9px;background:#fff;color:#C8386F;display:grid;place-items:center;font-family:"Bai Jamjuree";font-weight:700;flex:none}
+.brand b{display:block;font-family:"Bai Jamjuree";font-size:15.5px;line-height:1.25}
+.brand span{display:block;font-size:11.5px;opacity:.85}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav button{background:rgba(255,255,255,.14);color:#fff;border:0;border-radius:999px;padding:6px 13px;cursor:pointer}
+nav button[aria-current="true"]{background:#fff;color:var(--orange);font-weight:600}
+main{max-width:1060px;margin:0 auto;padding:20px 14px 90px}
+.page{display:none}.page.on{display:block}
 
-.head{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:4px 0 18px}
-.head h2{margin:0;font-size:24px}
-.head p{margin:0;color:var(--ink-2);font-size:14px}
-.head .sp{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.head{margin:2px 0 16px}
+.head h2{margin:0;font-size:23px}
+.head p{margin:2px 0 0;color:var(--ink-2);font-size:13.5px}
 
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
-.card .pad{padding:16px 18px}
-.card h3{margin:0 0 12px;font-size:16px}
-.grid{display:grid;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);margin-bottom:14px}
+.pad{padding:15px 17px}
+.card h3{margin:0 0 12px;font-size:16px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:820px){.two{grid-template-columns:1fr}}
 
-/* ---------- ปุ่ม ---------- */
-.btn{
-  border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 14px;
-  cursor:pointer;font-weight:500;transition:.15s;
-}
+.btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:500}
 .btn:hover{border-color:var(--orange);color:var(--orange)}
 .btn.primary{background:var(--orange);border-color:var(--orange);color:#fff}
 .btn.primary:hover{background:#14294B;color:#fff}
-.btn.ghost{background:transparent}
+.btn.sm{padding:4px 10px;font-size:13px;border-radius:8px}
 .btn.danger{color:var(--red);border-color:#F0C9C9}
-.btn.sm{padding:5px 10px;font-size:13px;border-radius:8px}
-.btn:focus-visible,input:focus-visible,select:focus-visible,button:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+.btn:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
+input,select{width:100%;border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:#fff}
+label.f{display:block;margin-bottom:11px}
+label.f>span{display:block;font-size:13px;color:var(--ink-2);margin-bottom:3px}
 
-input[type=text],input[type=number],input[type=file],select,textarea{
-  width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 11px;background:#fff;
-}
-label.f{display:block;margin-bottom:10px}
-label.f > span{display:block;font-size:13px;color:var(--ink-2);margin-bottom:4px}
-
-/* ---------- การ์ดสรุป ---------- */
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
-.stat{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
-.stat::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--slate)}
-.stat.ok::before{background:var(--green)}
-.stat.warn::before{background:var(--amber)}
-.stat.bad::before{background:var(--red)}
-.stat b{display:block;font-family:"Bai Jamjuree";font-size:30px;line-height:1.1}
-.stat span{font-size:13px;color:var(--ink-2)}
-
-/* ---------- ตาราง ---------- */
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
-th{font-size:12.5px;color:var(--ink-2);font-weight:600;background:#FDF2F7;position:sticky;top:0}
-tbody tr:hover{background:#FFF7FB}
-td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
-.tbl-wrap{overflow:auto;max-height:70vh;border-radius:var(--radius)}
-.linkish{background:none;border:0;padding:0;color:var(--orange);cursor:pointer;font-weight:600;text-align:left}
-
+.muted{color:var(--ink-2)}.small{font-size:13px}
+.note{background:var(--orange-soft);border:1px solid #F5C2D8;border-radius:11px;padding:10px 13px;font-size:13.5px}
 .pill{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:999px;font-size:12.5px;font-weight:600;white-space:nowrap}
-.pill.ok{background:#E4F5EB;color:#1E6B44}
-.pill.warn{background:#FDF0D5;color:#8A6100}
-.pill.bad{background:#FCE7E7;color:#A31C1C}
-.pill.na{background:#EEF1F3;color:#5A6570}
-
-/* ---------- แถบหน่วยกิต (signature) ---------- */
-.spine{display:flex;height:26px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:#F0E6EE}
-.spine i{display:block;height:100%}
-.spine-key{display:flex;flex-wrap:wrap;gap:10px 16px;margin-top:10px;font-size:12.5px;color:var(--ink-2)}
-.spine-key span{display:flex;align-items:center;gap:6px}
-.dot{width:10px;height:10px;border-radius:3px;display:inline-block}
-
-.bar{height:9px;border-radius:999px;background:#F0E6EE;overflow:hidden}
-.bar i{display:block;height:100%;background:var(--orange);border-radius:999px}
-.bar.done i{background:var(--green)}
-.bar.short i{background:var(--amber)}
-
-.sec-row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:11px 0;border-bottom:1px dashed var(--line)}
-.sec-row:last-child{border-bottom:0}
-.sec-row .t{font-weight:600}
-.sec-row .v{font-variant-numeric:tabular-nums;color:var(--ink-2);white-space:nowrap}
-.sec-row .bar{grid-column:1/-1}
-
-.muted{color:var(--ink-2)}
-.small{font-size:13px}
+.pill.ok{background:#E4F5EB;color:#1E6B44}.pill.warn{background:#FDF0D5;color:#8A6100}
+.pill.bad{background:#FCE7E7;color:#A31C1C}.pill.na{background:#EEF1F3;color:#5A6570}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block;flex:none}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 9px;font-size:12.5px}
 .chip.miss{border-color:#F0C9C9;background:#FEF5F5;color:#A31C1C}
 
-.empty{text-align:center;padding:44px 20px;color:var(--ink-2)}
-.empty b{display:block;font-family:"Bai Jamjuree";font-size:18px;color:var(--ink);margin-bottom:6px}
+/* กรอกเกรดตามหลักสูตร */
+.crow{display:grid;grid-template-columns:82px 1fr 34px 92px 96px;gap:8px;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line)}
+.crow:last-child{border-bottom:0}
+.crow .cd{font-weight:600;font-size:13px}
+.crow .cn{font-size:13.5px;line-height:1.35}
+.crow .cc{text-align:right;font-size:13px;color:var(--ink-2)}
+.crow select,.crow input{padding:5px 8px;font-size:13px;border-radius:8px}
+.crow.done{background:#F6FBF8}
+.crow.fail{background:#FEF5F5}
+@media(max-width:640px){
+  .crow{grid-template-columns:1fr 1fr;grid-template-areas:"cd cc" "cn cn" "g t"}
+  .crow .cd{grid-area:cd}.crow .cn{grid-area:cn}.crow .cc{grid-area:cc}
+  .crow .g{grid-area:g}.crow .t{grid-area:t}
+}
+.sechead{display:flex;align-items:center;gap:8px;margin:0 0 10px}
+.sechead .cnt{margin-left:auto;font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
 
-.note{background:var(--orange-soft);border:1px solid #F5C2D8;border-radius:12px;padding:11px 14px;font-size:13.5px}
+.bar{height:9px;border-radius:999px;background:#F0E6EE;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--orange);border-radius:999px}
+.bar.done i{background:var(--green)}.bar.short i{background:var(--amber)}
+.spine{display:flex;height:26px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:#F0E6EE}
+.spine i{display:block;height:100%}
+.sec-row{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:10px 0;border-bottom:1px dashed var(--line)}
+.sec-row:last-child{border-bottom:0}
+.sec-row .t{font-weight:600;display:flex;align-items:center;gap:6px}
+.sec-row .v{font-variant-numeric:tabular-nums;color:var(--ink-2)}
+.sec-row .bar{grid-column:1/-1}
 
-.two{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
-@media(max-width:900px){.two{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{padding:8px 9px;text-align:left;border-bottom:1px solid var(--line)}
+th{font-size:12.5px;color:var(--ink-2);background:#FDF2F7}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 
-/* ---------- โมดัล / มุมมองรายคน ---------- */
-.sheet{position:fixed;inset:0;background:rgba(22,32,46,.5);display:none;z-index:100;overflow:auto;padding:20px}
-.sheet.on{display:block}
-.sheet-in{max-width:900px;margin:0 auto;background:var(--paper);border-radius:18px;overflow:hidden;box-shadow:0 30px 60px -20px rgba(0,0,0,.4)}
-.sheet-top{background:#fff;border-bottom:1px solid var(--line);padding:14px 18px;display:flex;align-items:center;gap:10px;position:sticky;top:0}
-.sheet-top h3{margin:0;font-size:18px}
-.sheet-body{padding:18px}
+.termcard{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.termcard .th{display:flex;align-items:center;gap:10px;background:#FDF2F7;padding:9px 13px;font-weight:600}
+.termcard .th .gp{margin-left:auto;font-size:13px;font-weight:500;color:var(--ink-2)}
+.termcard .tb{padding:4px 13px 10px}
 
-.dist{display:flex;align-items:flex-end;gap:6px;height:110px}
-.dist div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:4px;font-size:11px;color:var(--ink-2)}
-.dist i{display:block;width:100%;background:var(--orange);border-radius:5px 5px 0 0;min-height:2px}
+.big{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.big .n{font-family:"Bai Jamjuree";font-size:34px;line-height:1}
+.empty{text-align:center;padding:38px 18px;color:var(--ink-2)}
+.empty b{display:block;font-family:"Bai Jamjuree";font-size:17px;color:var(--ink);margin-bottom:5px}
 
-/* ---------- พิมพ์ ---------- */
 .print-only{display:none}
 @media print{
+  .topbar,nav,.no-print{display:none!important}
   body{background:#fff}
-  .topbar,nav.tabs,.head .sp,.no-print,.sheet-top{display:none !important}
-  body.printing main{display:none !important}
-  .sheet:not(.on){display:none !important}
-  .sheet.on{position:static;background:#fff;padding:0;display:block}
-  .sheet-in{box-shadow:none;border-radius:0;max-width:none;background:#fff}
-  .sheet-body{padding:0}
-  .print-only{display:block}
+  .page:not(.on){display:none}
   .card{box-shadow:none;break-inside:avoid}
   main{padding:0}
-  .page:not(.on){display:none}
+  .print-only{display:block}
 }
 .print-head{text-align:center;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:14px}
 .print-head b{display:block;font-family:"Bai Jamjuree";font-size:19px}
-.print-head span{font-size:13px}
-.sign{display:flex;justify-content:space-between;gap:30px;margin-top:36px;font-size:13px;text-align:center}
-.sign div{flex:1}
-.sign u{display:block;margin-bottom:6px;color:transparent}
-
 
 /* ---------- เครดิตผู้พัฒนา ---------- */
 .credit{
@@ -220,7 +153,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
     font-size:11px;text-align:center;color:#555}
 }
 
-@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
@@ -229,17 +162,13 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
   <div class="topbar-in">
     <div class="brand">
       <div class="logos" id="brandLogos"></div>
-      <div>
-        <b>ระบบสารสนเทศเช็คผลการสำเร็จการศึกษา</b>
-        <span>สาขาวิชานิเทศศาสตร์ · คณะวิทยาการจัดการ · มหาวิทยาลัยราชภัฏอุดรธานี — สำหรับอาจารย์ที่ปรึกษา</span>
-      </div>
+      <div><b>ระบบสารสนเทศเช็คผลการสำเร็จการศึกษา</b><span>สาขาวิชานิเทศศาสตร์ · คณะวิทยาการจัดการ · มหาวิทยาลัยราชภัฏอุดรธานี</span></div>
     </div>
-    <nav class="tabs" id="tabs">
-      <button data-p="dash" aria-current="true">แดชบอร์ดรุ่น</button>
-      <button data-p="students">นักศึกษา</button>
-      <button data-p="grades">ผลการเรียน</button>
-      <button data-p="curr">โครงสร้างหลักสูตร</button>
-      <button data-p="settings">เกณฑ์ &amp; สำรองข้อมูล</button>
+    <nav id="tabs">
+      <button data-p="me" aria-current="true">1 · ข้อมูลของฉัน</button>
+      <button data-p="fill">2 · กรอกเกรด</button>
+      <button data-p="term">3 · ดูรายภาคเรียน</button>
+      <button data-p="result">4 · ผลเช็คจบ</button>
       <button id="btnInstall" style="display:none;background:#fff;color:#C8386F;border:0;border-radius:999px;padding:6px 14px;font-weight:600;cursor:pointer">⤓ ติดตั้งแอป</button>
     </nav>
   </div>
@@ -247,193 +176,129 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 
 <main>
 
-<!-- ========== แดชบอร์ด ========== -->
-<section class="page on" id="p-dash">
-  <div class="head">
-    <div>
-      <h2>แดชบอร์ดรุ่น</h2>
-      <p id="dashSub">ยังไม่มีข้อมูล</p>
-    </div>
-    <div class="sp">
-      <select id="fTrack" style="width:auto"><option value="">ทุกกลุ่มวิชาเอก</option></select>
-      <button class="btn" id="btnDemo">ใส่ข้อมูลตัวอย่าง</button>
-    </div>
-  </div>
-
-  <div class="stats" id="stats"></div>
-
+<!-- 1) ข้อมูลของฉัน -->
+<section class="page on" id="p-me">
+  <div class="head"><h2>ข้อมูลของฉัน</h2><p>กรอกครั้งเดียว ระบบจำไว้ในเครื่องนี้ (ไม่ส่งข้อมูลออกไปไหน)</p></div>
   <div class="two">
-    <div class="card">
-      <div class="pad">
-        <h3>รายชื่อนักศึกษา — สถานะตรวจจบ</h3>
-        <div class="tbl-wrap">
-          <table id="tDash">
-            <thead><tr>
-              <th>รหัส</th><th>ชื่อ-สกุล</th><th>กลุ่มวิชาเอก</th>
-              <th class="num">หน่วยกิต</th><th class="num">GPA</th><th>สถานะ</th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
+    <div class="card"><div class="pad">
+      <h3>ประวัตินักศึกษา</h3>
+      <div style="display:flex;gap:14px;align-items:center;margin-bottom:14px">
+        <div id="mPhotoBox"></div>
+        <div>
+          <div class="small" style="font-weight:600">รูปนักศึกษา</div>
+          <div class="small muted" style="margin:2px 0 8px">ระบบย่อรูปให้อัตโนมัติเหลือประมาณ 20 KB</div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap">
+            <label class="btn sm" style="width:auto">เลือกรูป<input type="file" id="mPhoto" accept="image/*" hidden></label>
+            <button class="btn sm danger" id="btnDelPhoto" style="display:none">ลบรูป</button>
+          </div>
+          <div id="photoMsg" class="small" style="margin-top:6px"></div>
         </div>
       </div>
-    </div>
-
-    <div class="grid" style="align-content:start">
-      <div class="card"><div class="pad">
-        <h3>การกระจายเกรดเฉลี่ย</h3>
-        <div class="dist" id="dist"></div>
-      </div></div>
-
-      <div class="card"><div class="pad">
-        <h3>ต้องติดตามเป็นพิเศษ</h3>
-        <div id="watch" class="small"></div>
-      </div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== นักศึกษา ========== -->
-<section class="page" id="p-students">
-  <div class="head">
-    <div><h2>นักศึกษา</h2><p>เพิ่มรายชื่อ แล้วเลือกกลุ่มวิชาเอกที่นักศึกษาเรียน</p></div>
-    <div class="sp"><button class="btn danger sm" id="btnClearStu">ลบนักศึกษาทั้งหมด</button></div>
-  </div>
-
-  <div class="two">
-    <div class="card"><div class="pad">
-      <h3>รายชื่อ (<span id="cntStu">0</span> คน)</h3>
-      <div class="tbl-wrap">
-        <table id="tStu">
-          <thead><tr><th>รูป</th><th>รหัส</th><th>ชื่อ-สกุล</th><th>กลุ่มวิชาเอก</th><th></th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
+      <label class="f"><span>รหัสนักศึกษา</span><input id="mId" placeholder="เช่น 65041234567"></label>
+      <label class="f"><span>ชื่อ-สกุล</span><input id="mName" placeholder="นายสมชาย ใจดี"></label>
+      <label class="f"><span>กลุ่มวิชาเอกที่เลือกเรียน</span><select id="mTrack"></select></label>
+      <label class="f"><span>ปีการศึกษาที่เข้าเรียน</span><input id="mYear" placeholder="2565"></label>
+      <button class="btn primary" id="btnSaveMe">บันทึกข้อมูล</button>
     </div></div>
-
     <div class="card"><div class="pad">
-      <h3>เพิ่มนักศึกษา</h3>
-      <label class="f"><span>รหัสนักศึกษา</span><input type="text" id="sId" placeholder="เช่น 65041234567"></label>
-      <label class="f"><span>ชื่อ-สกุล</span><input type="text" id="sName" placeholder="นายสมชาย ใจดี"></label>
-      <label class="f"><span>กลุ่มวิชาเอก</span><select id="sTrack"></select></label>
-      <button class="btn primary" id="btnAddStu">เพิ่มนักศึกษา</button>
+      <h3>ใช้ยังไง</h3>
+      <ol class="small" style="margin:0;padding-left:18px;line-height:1.9">
+        <li>เปิดระบบทะเบียน <b>portal.udru.ac.th</b> ดูเกรดของตัวเอง</li>
+        <li>มาที่หน้า <b>กรอกเกรด</b> แล้วเลือกเกรดของแต่ละวิชาตามที่ได้จริง</li>
+        <li>วิชาที่ยังไม่ได้เรียน ปล่อยว่างไว้</li>
+        <li>ดูผลที่หน้า <b>ผลเช็คจบ</b> — ระบบบอกว่าเหลือกี่หน่วยกิต ต้องลงวิชาอะไรอีกบ้าง</li>
+      </ol>
       <div class="note" style="margin-top:14px">
-        นำเข้ารายชื่อพร้อมกันได้ที่หน้า <b>ผลการเรียน</b> — ไฟล์ผลการเรียนจะสร้างรายชื่อให้อัตโนมัติ
+        ผลจากระบบนี้เป็น <b>การตรวจสอบเบื้องต้น</b> เพื่อวางแผนลงทะเบียน ผลอย่างเป็นทางการยึดตามสำนักส่งเสริมวิชาการและงานทะเบียน
+      </div>
+      <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap">
+        <button class="btn" id="btnExp">บันทึกไฟล์สำรอง</button>
+        <label class="btn" style="width:auto">โหลดไฟล์สำรอง<input type="file" id="imp" accept=".json" hidden></label>
+        <button class="btn danger" id="btnWipe">ล้างข้อมูลทั้งหมด</button>
       </div>
     </div></div>
   </div>
-</section>
-
-<!-- ========== ผลการเรียน ========== -->
-<section class="page" id="p-grades">
-  <div class="head">
-    <div><h2>ผลการเรียน</h2><p>นำเข้าไฟล์จากระบบทะเบียน หรือกรอกรายวิชาทีละแถว</p></div>
-    <div class="sp"><button class="btn danger sm" id="btnClearGr">ลบผลการเรียนทั้งหมด</button></div>
-  </div>
-
-  <div class="two">
-    <div class="card"><div class="pad">
-      <h3>อ่านจากใบแจ้งผลการเรียน (PDF / ภาพ)</h3>
-      <p class="small muted" style="margin-top:0">รับไฟล์รายคน — <b>PDF จากระบบทะเบียนอ่านได้ตรง 100%</b> ส่วนภาพถ่าย/แคปหน้าจอใช้ตัวอ่านภาพ (ตรวจแก้ได้ก่อนบันทึก)</p>
-      <label class="f"><span>นักศึกษา</span><select id="fileStu"></select></label>
-      <div style="display:grid;grid-template-columns:1fr 130px auto;gap:8px;align-items:end">
-        <label class="f" style="margin:0"><span>ไฟล์ PDF / ภาพ</span><input type="file" id="rFile" accept="application/pdf,image/*"></label>
-        <label class="f" style="margin:0"><span>ภาคเรียน</span><input type="text" id="rTerm" placeholder="2/2568"></label>
-        <button class="btn primary" id="btnRead">อ่านไฟล์</button>
-      </div>
-      <div id="rMsg" class="small" style="margin-top:8px"></div>
-      <div id="rPreview" style="margin-top:10px"></div>
-    </div></div>
-
-    <div class="card"><div class="pad">
-      <h3>นำเข้าไฟล์ CSV</h3>
-      <p class="small muted" style="margin-top:0">
-        คอลัมน์ตามลำดับนี้ (บรรทัดแรกเป็นหัวตาราง):<br>
-        <code>รหัสนักศึกษา, ชื่อ-สกุล, รหัสวิชา, ชื่อวิชา, หน่วยกิต, เกรด, ภาคเรียน</code>
-      </p>
-      <input type="file" id="csv" accept=".csv,text/csv">
-      <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-        <button class="btn" id="btnTpl">ดาวน์โหลดไฟล์ตัวอย่าง</button>
-        <button class="btn" id="btnExpCsv">ส่งออกผลการเรียนเป็น CSV</button>
-      </div>
-      <div id="csvMsg" class="small" style="margin-top:10px"></div>
-
-      <h3 style="margin-top:22px">กรอกทีละรายวิชา</h3>
-      <label class="f"><span>นักศึกษา</span><select id="gStu"></select></label>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <label class="f"><span>รหัสวิชา</span><input type="text" id="gCode" placeholder="CA31102"></label>
-        <label class="f"><span>เกรด</span><select id="gGrade"></select></label>
-      </div>
-      <div style="display:grid;grid-template-columns:2fr 1fr;gap:10px">
-        <label class="f"><span>ชื่อวิชา (เว้นว่างได้ถ้าอยู่ในหลักสูตร)</span><input type="text" id="gName"></label>
-        <label class="f"><span>หน่วยกิต</span><input type="number" id="gCredit" min="0" max="12" step="1" placeholder="3"></label>
-      </div>
-      <button class="btn primary" id="btnAddGr">บันทึกรายวิชา</button>
-    </div></div>
-
-    <div class="card"><div class="pad">
-      <h3>ผลการเรียนที่บันทึกไว้ (<span id="cntGr">0</span> รายการ)</h3>
-      <label class="f"><span>กรองตามนักศึกษา</span><select id="fStu"><option value="">ทุกคน</option></select></label>
-      <div class="tbl-wrap">
-        <table id="tGr">
-          <thead><tr><th>รหัส นศ.</th><th>รหัสวิชา</th><th>ชื่อวิชา</th><th class="num">นก.</th><th>เกรด</th><th></th></tr></thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div></div>
-  </div>
-</section>
-
-<!-- ========== หลักสูตร ========== -->
-<section class="page" id="p-curr">
-  <div class="head">
-    <div><h2>โครงสร้างหลักสูตร</h2><p>นิเทศศาสตรบัณฑิต — ไม่น้อยกว่า 128 หน่วยกิต</p></div>
-  </div>
-  <div class="card" style="margin-bottom:14px"><div class="pad">
-    <h3>สัดส่วนหน่วยกิตตลอดหลักสูตร</h3>
-    <div class="spine" id="currSpine"></div>
-    <div class="spine-key" id="currKey"></div>
-  </div></div>
-  <div id="currList" class="grid"></div>
-</section>
-
-<!-- ========== ตั้งค่า ========== -->
-<section class="page" id="p-settings">
-  <div class="head">
-    <div><h2>เกณฑ์ &amp; สำรองข้อมูล</h2><p>ปรับเกณฑ์สำเร็จการศึกษา และเก็บ/กู้คืนข้อมูลทั้งระบบ</p></div>
-  </div>
-
   <div class="card"><div class="pad">
-    <h3>โลโก้ที่แสดงบนหัวระบบและใบตรวจสอบ</h3>
-    <p class="small muted" style="margin-top:0">ระบบฝังโลโก้มหาวิทยาลัย คณะ และสาขาไว้ให้แล้ว — อัปโหลดทับได้ถ้าต้องการเปลี่ยนเป็นไฟล์ของท่านเอง</p>
+    <h3>โลโก้บนหัวระบบและใบตรวจสอบ <span class="small muted" style="font-weight:400">(ทางเลือก)</span></h3>
     <div class="logo-box" id="logoBox"></div>
   </div></div>
+</section>
 
-  <div class="two">
-    <div class="card"><div class="pad">
-      <h3>เกณฑ์สำเร็จการศึกษา</h3>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <label class="f"><span>หน่วยกิตรวมขั้นต่ำ</span><input type="number" id="cfgCredits" min="90" max="180"></label>
-        <label class="f"><span>เกรดเฉลี่ยสะสมขั้นต่ำ</span><input type="number" id="cfgGpa" min="0" max="4" step="0.01"></label>
-      </div>
-      <label class="f"><span>ระยะเตือน "เสี่ยงไม่จบ" — ขาดหน่วยกิตไม่เกิน</span><input type="number" id="cfgRisk" min="3" max="60"></label>
-      <label class="f"><span>ผู้ตรวจสอบ (พิมพ์ในใบตรวจสอบ)</span><input type="text" id="cfgOfficer" placeholder="ผศ.ดร.เสกสรร สายสีสด"></label>
-      <button class="btn primary" id="btnSaveCfg">บันทึกเกณฑ์</button>
-    </div></div>
-
-    <div class="card"><div class="pad">
-      <h3>สำรองข้อมูล</h3>
-      <p class="small muted" style="margin-top:0">ข้อมูลทั้งหมดเก็บอยู่ในเบราว์เซอร์เครื่องนี้เท่านั้น (localStorage) ย้ายเครื่องต้องใช้ไฟล์สำรอง</p>
-      <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn primary" id="btnExp">บันทึกไฟล์สำรอง (.json)</button>
-        <label class="btn" style="width:auto">กู้คืนจากไฟล์<input type="file" id="imp" accept=".json" hidden></label>
-      </div>
-      <div class="note" style="margin-top:16px">
-        <b>ข้อมูลส่วนบุคคล (PDPA)</b><br>
-        ผลการเรียนเป็นข้อมูลส่วนบุคคล ใช้เพื่อการให้คำปรึกษาทางวิชาการเท่านั้น เมื่อเสร็จสิ้นภารกิจให้ลบข้อมูลออกจากเครื่อง
-      </div>
-      <button class="btn danger" style="margin-top:12px" id="btnWipe">ลบข้อมูลทั้งหมดในเครื่องนี้</button>
-    </div></div>
+<!-- 2) กรอกเกรด -->
+<section class="page" id="p-fill">
+  <div class="head">
+    <h2>กรอกเกรด</h2>
+    <p>เลือกเกรดของวิชาที่เรียนผ่านมาแล้ว · วิชาที่ยังไม่เรียน เว้นว่างไว้ · ระบบบันทึกให้อัตโนมัติ</p>
   </div>
+  <div class="card"><div class="pad">
+    <div class="big">
+      <div><div class="n" id="fillCredit">0</div><div class="small muted">หน่วยกิตที่ผ่านแล้ว</div></div>
+      <div><div class="n" id="fillGpa">—</div><div class="small muted">เกรดเฉลี่ยสะสม</div></div>
+      <div style="flex:1;min-width:180px"><div class="bar" id="fillBarWrap"><i id="fillBar" style="width:0"></i></div>
+        <div class="small muted" style="margin-top:6px" id="fillHint">เกณฑ์จบ 128 หน่วยกิต</div></div>
+    </div>
+  </div></div>
+  <div class="card"><div class="pad">
+    <h3>อ่านจากไฟล์ใบแจ้งผลการเรียน <span class="small muted" style="font-weight:400">— PDF แม่นที่สุด · ภาพถ่าย/แคปหน้าจอก็ได้</span></h3>
+    <p class="small muted" style="margin-top:0">ระบบอ่าน <b>รหัสวิชา · หน่วยกิต · เกรด</b> แล้วเติมชื่อวิชาให้จากหลักสูตร — ตรวจความถูกต้องในตารางก่อนกดบันทึกได้<br>
+      <b>ไฟล์ PDF ที่ดาวน์โหลดจากระบบทะเบียนอ่านได้ตรง 100%</b> (ดึงข้อความจริง ไม่ต้องเดาจากภาพ)</p>
+    <div style="display:grid;grid-template-columns:1fr 150px auto;gap:8px;align-items:end">
+      <label class="f" style="margin:0"><span>ไฟล์ PDF / ภาพ (JPG, PNG)</span><input type="file" id="imgFile" accept="application/pdf,image/*"></label>
+      <label class="f" style="margin:0"><span>ภาคเรียน</span><input id="iTerm" placeholder="2/2568"></label>
+      <button class="btn primary" id="btnOcr">อ่านไฟล์</button>
+    </div>
+    <div id="ocrMsg" class="small" style="margin-top:8px"></div>
+  </div></div>
+
+  <div class="card"><div class="pad">
+    <h3>วางผลการเรียนทั้งภาคทีเดียว <span class="small muted" style="font-weight:400">— เร็วกว่าเลือกทีละวิชา</span></h3>
+    <p class="small muted" style="margin-top:0">คัดลอกตารางผลการเรียนจากระบบทะเบียน (ลากคลุมทั้งตาราง → Ctrl+C) แล้ววางในช่องนี้ ระบบจะอ่านรหัสวิชา หน่วยกิต และเกรดให้เอง</p>
+    <div style="display:grid;grid-template-columns:1fr 150px auto;gap:8px;align-items:end;margin-bottom:8px">
+      <div class="small muted">รองรับรูปแบบ เช่น <code>CA31102 หลักนิเทศศาสตร์ 3 B+</code> หรือคัดลอกมาทั้งแถว</div>
+      <label class="f" style="margin:0"><span>ภาคเรียนของข้อมูลชุดนี้</span><input id="pTerm" placeholder="1/2567"></label>
+      <button class="btn primary" id="btnParse">อ่านข้อมูล</button>
+    </div>
+    <textarea id="paste" rows="6" placeholder="วางข้อมูลที่คัดลอกมาตรงนี้..." style="width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;font-family:ui-monospace,monospace;font-size:13px"></textarea>
+    <div id="pPreview" style="margin-top:12px"></div>
+  </div></div>
+
+  <div id="lockBar"></div>
+  <div id="fillList"></div>
+
+  <div class="card"><div class="pad">
+    <h3>วิชาอื่น ๆ ที่เรียน <span class="small muted" style="font-weight:400">(วิชาที่สัมพันธ์ · เลือกเสรี · วิชาข้ามกลุ่มเอก)</span></h3>
+    <div style="display:grid;grid-template-columns:1fr 1.8fr 62px 82px 92px 130px auto;gap:8px;align-items:end" id="addRow">
+      <label class="f" style="margin:0"><span>รหัสวิชา</span><input id="oCode" list="allCodes" placeholder="CA33203"></label>
+      <label class="f" style="margin:0"><span>ชื่อวิชา</span><input id="oName" placeholder="เว้นว่างได้"></label>
+      <label class="f" style="margin:0"><span>นก.</span><input id="oCr" type="number" min="1" max="9" placeholder="3"></label>
+      <label class="f" style="margin:0"><span>เกรด</span><select id="oGrade"></select></label>
+      <label class="f" style="margin:0"><span>ภาคเรียน</span><input id="oTerm" placeholder="1/2567"></label>
+      <label class="f" style="margin:0"><span>นับเป็นหมวด</span><select id="oSec">
+        <option value="">อัตโนมัติ</option>
+        <option value="RELATED">วิชาที่สัมพันธ์</option>
+        <option value="FREE">เลือกเสรี</option>
+      </select></label>
+      <button class="btn primary" id="btnAddOther">เพิ่ม</button>
+    </div>
+    <datalist id="allCodes"></datalist>
+    <div style="margin-top:12px" id="otherList"></div>
+  </div></div>
+</section>
+
+<!-- 3) รายภาคเรียน -->
+<section class="page" id="p-term">
+  <div class="head"><h2>ผลการเรียนรายภาค</h2><p>ระบบจัดกลุ่มจากช่อง “ภาคเรียน” ที่กรอกไว้ พร้อมคำนวณเกรดเฉลี่ยของแต่ละภาค</p></div>
+  <div id="termList"></div>
+</section>
+
+<!-- 4) ผลเช็คจบ -->
+<section class="page" id="p-result">
+  <div class="head no-print">
+    <h2>ผลเช็คจบ</h2>
+    <p>สรุปจากข้อมูลที่กรอก · <button class="btn sm" id="btnPrint" style="margin-left:4px">พิมพ์ / บันทึกเป็น PDF</button>
+      <button class="btn sm" id="btnCsv">ส่งออกให้อาจารย์ที่ปรึกษา (CSV)</button></p>
+  </div>
+  <div id="result"></div>
 </section>
 
 </main>
@@ -448,286 +313,113 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
 </footer>
 
 
-<!-- ========== ใบตรวจจบรายบุคคล ========== -->
-<div class="sheet" id="sheet">
-  <div class="sheet-in">
-    <div class="sheet-top no-print">
-      <h3 id="shName">—</h3>
-      <div style="margin-left:auto;display:flex;gap:8px">
-        <button class="btn sm" id="btnPrint">พิมพ์ใบตรวจสอบ</button>
-        <button class="btn sm ghost" id="btnClose">ปิด</button>
-      </div>
-    </div>
-    <div class="sheet-body" id="shBody"></div>
-  </div>
-</div>
-
 <script>
-/* =========================================================
-   1) โครงสร้างหลักสูตรนิเทศศาสตรบัณฑิต (128 นก.)
-   ========================================================= */
-const TRACKS = {
-  JN:{name:"วารสารสนเทศและสื่อใหม่", prefix:"32"},
-  PR:{name:"การประชาสัมพันธ์และสื่อสารองค์กร", prefix:"33"},
-  BC:{name:"วิทยุ โทรทัศน์และสื่อดิจิทัล", prefix:"34"}
+/* ================= หลักสูตรนิเทศศาสตรบัณฑิต 128 นก. ================= */
+const TRACKS={JN:{name:"วารสารสนเทศและสื่อใหม่"},PR:{name:"การประชาสัมพันธ์และสื่อสารองค์กร"},BC:{name:"วิทยุ โทรทัศน์และสื่อดิจิทัล"}};
+const CUR={
+ GE_LANG:{label:"ศึกษาทั่วไป · ภาษาและการสื่อสาร",need:9,color:"#8FB0DA",fixed:1,courses:[
+  ["GE44001","ภาษาไทยเพื่อการสื่อสาร",3],["GE44002","ภาษาอังกฤษในชีวิตประจำวันและการทำงาน",3],["GE44003","ภาษาอังกฤษเพื่อการนำไปใช้",3]]},
+ GE_HUM:{label:"ศึกษาทั่วไป · มนุษยศาสตร์",need:6,color:"#6E94C8",fixed:1,courses:[["GE22001","ความดีงามแห่งชีวิต",6]]},
+ GE_SOC:{label:"ศึกษาทั่วไป · สังคมศาสตร์",need:6,color:"#4E77B4",fixed:1,courses:[["GE11001","ศาสตร์พระราชาเพื่อการพัฒนาท้องถิ่น",6]]},
+ GE_SCI:{label:"ศึกษาทั่วไป · คณิตศาสตร์ วิทยาศาสตร์และเทคโนโลยี",need:9,color:"#2F5B9C",fixed:1,courses:[
+  ["GE33001","วิทยาศาสตร์และประเด็นร่วมสมัย",6],["GE33002","รู้ทันโลกดิจิทัล",3]]},
+ CORE:{label:"วิชาแกน",need:9,color:"#1B3A6B",fixed:1,courses:[
+  ["CA31302","ภาษาอังกฤษเพื่องานนิเทศศาสตร์",3],["CA31305","ผู้ประกอบการสมัยใหม่ในงานนิเทศศาสตร์",3],["GM39102","ความรู้เบื้องต้นเกี่ยวกับการประกอบธุรกิจ",3]]},
+ MAJOR_REQ:{label:"วิชาเอกบังคับ",need:47,color:"#0F2547",fixed:1,courses:[
+  ["CA31101","การพัฒนาบุคลิกภาพเพื่องานนิเทศศาสตร์",3],["CA31102","หลักนิเทศศาสตร์",3],
+  ["CA31103","กลยุทธ์การเล่าเรื่องและการสร้างสรรค์สื่อใหม่",3],["CA31104","การถ่ายภาพเพื่อการสื่อสาร",3],
+  ["CA31202","คอมพิวเตอร์เพื่องานนิเทศศาสตร์",3],["CA31203","การรู้เท่าทันสื่อสารสนเทศและดิจิทัล",3],
+  ["CA31301","กฎหมายและจริยธรรมสื่อสารมวลชน",3],["CA31303","ระบบสารสนเทศเพื่องานนิเทศศาสตร์",3],
+  ["CA31304","ภาษาอังกฤษเพื่อการสื่อข่าว",3],["CA31306","การสัมมนานิเทศศาสตร์",3],
+  ["CA31401","การวิจัยนิเทศศาสตร์",3],["CA31402","การสื่อสารเพื่อการพัฒนาท้องถิ่น",3],
+  ["CA32101","หลักการสื่อข่าว",3],["CA35201","หลักการสื่อสารการตลาดและการตลาดดิจิทัล",3],
+  ["CA38401","การฝึกประสบการณ์วิชาชีพนิเทศศาสตร์",5]]},
+ TRACK_REQ:{label:"เอกเลือก · บังคับในกลุ่ม",need:15,color:"#D6336C",fixed:1,track:1,courses:{
+  JN:[["CA32102","หลักวารสารสนเทศและสื่อใหม่",3],["CA32201","การออกแบบเนื้อหาและการผลิตสื่อใหม่",3],["CA32204","การรายงานข่าวเชิงลึก",3],["CA32301","การผลิตข่าวและสารคดี",3],["CA32302","การบรรณาธิกรสื่อใหม่",3]],
+  PR:[["CA33101","หลักการประชาสัมพันธ์และสื่อสารองค์กร",3],["CA33201","การเขียนเพื่อการสื่อสารองค์กร",3],["CA33202","วาทนิเทศเพื่อการประชาสัมพันธ์",3],["CA33301","เทคนิคการนำเสนอและกลยุทธ์การโน้มน้าวใจ",3],["CA33401","การวางแผนการประชาสัมพันธ์และการรณรงค์",3]],
+  BC:[["CA34101","หลักการสื่อสารมวลชน",3],["CA34201","การเขียนบทสำหรับสื่อดิจิทัล",3],["CA34202","การสร้างสรรค์รายการวิทยุบนสื่อดิจิทัล",3],["CA34203","การสร้างสรรค์รายการโทรทัศน์บนสื่อดิจิทัล",3],["CA34301","การสื่อข่าววิทยุและโทรทัศน์ดิจิทัล",3]]}},
+ TRACK_ELEC:{label:"เอกเลือก · เลือกในกลุ่ม",need:12,color:"#F06595",track:1,courses:{
+  JN:[["CA32103","สื่อใหม่กับสังคม",3],["CA32202","กราฟิกสำหรับงานวารสารสนเทศและสื่อใหม่",3],["CA32203","การคิดสร้างสรรค์เพื่อการสื่อสาร",3],["CA32205","การเขียนสร้างสรรค์เพื่องานนิเทศศาสตร์",3],["CA32206","การสัมภาษณ์เพื่องานผลิตสื่อ",3],["CA32303","การผลิตสื่อสิ่งพิมพ์ดิจิทัล",3],["CA32304","การสร้างสรรค์สื่อใหม่เพื่อชุมชน",3],["CA32305","การสื่อสารข้ามวัฒนธรรม",3],["CA32306","การจัดการคลังข้อมูลเพื่องานวารสารสนเทศ",3],["CA32401","การบริหารจัดการสื่อใหม่",3],["CA32402","การวิเคราะห์ข่าวและสถานการณ์ปัจจุบัน",3]],
+  PR:[["CA33203","การสร้างภาพลักษณ์องค์กร",3],["CA33204","การผลิตกราฟิกเพื่องานประชาสัมพันธ์",3],["CA33205","สื่อประชาสัมพันธ์เพื่อการสื่อสารองค์กร",3],["CA33302","กลยุทธ์การสร้างภาพลักษณ์ตราสินค้า",3],["CA33303","สาธารณมติและการทำโพล",3],["CA33304","สื่อพื้นบ้านเพื่อการประชาสัมพันธ์",3],["CA33305","การสร้างสรรค์และผลิตงานโฆษณา",3],["CA33306","การเขียนขั้นสูงเพื่อการประชาสัมพันธ์",3],["CA33402","การจัดกิจกรรมพิเศษเพื่อการโฆษณาและประชาสัมพันธ์",3],["CA33403","การสื่อสารเพื่อการจัดการภาวะวิกฤติ",3],["CA33404","นวัตกรรมการผลิตสื่อในธุรกิจไมซ์",3]],
+  BC:[["CA34102","หลักการวิทยุและโทรทัศน์",3],["CA34204","การออกแบบเนื้อหาสำหรับผลิตสื่อวิทยุและโทรทัศน์",3],["CA34205","หลักการเป็นผู้ประกาศข่าวและพิธีกร",3],["CA34302","การไลฟ์ผ่านแพลตฟอร์มดิจิทัล",3],["CA34303","การลำดับภาพและสร้างสรรค์เสียง",3],["CA34304","ศิลปะการใช้เสียงเพื่องานวิทยุและโทรทัศน์",3],["CA34305","การผลิตกราฟิกเพื่องานวิทยุโทรทัศน์",3],["CA34306","การผลิตภาพยนตร์สั้น",3],["CA34307","การแสดงและการกำกับการแสดง",3],["CA34401","การบริหารงานวิทยุและโทรทัศน์",3],["CA34402","การออกแบบฉากและวัสดุอุปกรณ์ประกอบฉาก",3],["CA34403","การสื่อสารวัฒนธรรมผ่านอุตสาหกรรมบันเทิง",3]]}},
+ RELATED:{label:"วิชาที่สัมพันธ์",need:9,color:"#93A0B5",courses:[]},
+ FREE:{label:"วิชาเลือกเสรี",need:6,color:"#BCC6D6",courses:[]}
 };
+const ORDER=["GE_LANG","GE_HUM","GE_SOC","GE_SCI","CORE","MAJOR_REQ","TRACK_REQ","TRACK_ELEC","RELATED","FREE"];
+const INDEX={};
+ORDER.forEach(k=>{const s=CUR[k];
+  if(s.track){Object.keys(s.courses).forEach(t=>s.courses[t].forEach(c=>INDEX[c[0]]={sec:k,track:t,name:c[1],credit:c[2]}));}
+  else s.courses.forEach(c=>INDEX[c[0]]={sec:k,name:c[1],credit:c[2]});});
+const GP={"A":4,"B+":3.5,"B":3,"C+":2.5,"C":2,"D+":1.5,"D":1,"F":0};
+const OTHERG=["W","I","S"];
+const NEED_TOTAL=128, NEED_GPA=2.00;
 
-/* [รหัส, ชื่อวิชา, หน่วยกิต] */
-const CUR = {
-  GE_LANG:{label:"ศึกษาทั่วไป · ภาษาและการสื่อสาร", need:9, color:"#8FB0DA", fixed:true, courses:[
-    ["GE44001","ภาษาไทยเพื่อการสื่อสาร",3],
-    ["GE44002","ภาษาอังกฤษในชีวิตประจำวันและการทำงาน",3],
-    ["GE44003","ภาษาอังกฤษเพื่อการนำไปใช้",3]]},
-  GE_HUM:{label:"ศึกษาทั่วไป · มนุษยศาสตร์", need:6, color:"#6E94C8", fixed:true, courses:[
-    ["GE22001","ความดีงามแห่งชีวิต",6]]},
-  GE_SOC:{label:"ศึกษาทั่วไป · สังคมศาสตร์", need:6, color:"#4E77B4", fixed:true, courses:[
-    ["GE11001","ศาสตร์พระราชาเพื่อการพัฒนาท้องถิ่น",6]]},
-  GE_SCI:{label:"ศึกษาทั่วไป · คณิตศาสตร์ วิทยาศาสตร์และเทคโนโลยี", need:9, color:"#2F5B9C", fixed:true, courses:[
-    ["GE33001","วิทยาศาสตร์และประเด็นร่วมสมัย",6],
-    ["GE33002","รู้ทันโลกดิจิทัล",3]]},
-  CORE:{label:"วิชาแกน", need:9, color:"#1B3A6B", fixed:true, courses:[
-    ["CA31302","ภาษาอังกฤษเพื่องานนิเทศศาสตร์",3],
-    ["CA31305","ผู้ประกอบการสมัยใหม่ในงานนิเทศศาสตร์",3],
-    ["GM39102","ความรู้เบื้องต้นเกี่ยวกับการประกอบธุรกิจ",3]]},
-  MAJOR_REQ:{label:"วิชาเอกบังคับ", need:47, color:"#0F2547", fixed:true, courses:[
-    ["CA31101","การพัฒนาบุคลิกภาพเพื่องานนิเทศศาสตร์",3],
-    ["CA31102","หลักนิเทศศาสตร์",3],
-    ["CA31103","กลยุทธ์การเล่าเรื่องและการสร้างสรรค์สื่อใหม่",3],
-    ["CA31104","การถ่ายภาพเพื่อการสื่อสาร",3],
-    ["CA31202","คอมพิวเตอร์เพื่องานนิเทศศาสตร์",3],
-    ["CA31203","การรู้เท่าทันสื่อสารสนเทศและดิจิทัล",3],
-    ["CA31301","กฎหมายและจริยธรรมสื่อสารมวลชน",3],
-    ["CA31303","ระบบสารสนเทศเพื่องานนิเทศศาสตร์",3],
-    ["CA31304","ภาษาอังกฤษเพื่อการสื่อข่าว",3],
-    ["CA31306","การสัมมนานิเทศศาสตร์",3],
-    ["CA31401","การวิจัยนิเทศศาสตร์",3],
-    ["CA31402","การสื่อสารเพื่อการพัฒนาท้องถิ่น",3],
-    ["CA32101","หลักการสื่อข่าว",3],
-    ["CA35201","หลักการสื่อสารการตลาดและการตลาดดิจิทัล",3],
-    ["CA38401","การฝึกประสบการณ์วิชาชีพนิเทศศาสตร์",5]]},
-  TRACK_REQ:{label:"วิชาเอกเลือก · บังคับในกลุ่ม", need:15, color:"#D6336C", track:true, fixed:true, courses:{
-    JN:[["CA32102","หลักวารสารสนเทศและสื่อใหม่",3],
-        ["CA32201","การออกแบบเนื้อหาและการผลิตสื่อใหม่",3],
-        ["CA32204","การรายงานข่าวเชิงลึก",3],
-        ["CA32301","การผลิตข่าวและสารคดี",3],
-        ["CA32302","การบรรณาธิกรสื่อใหม่",3]],
-    PR:[["CA33101","หลักการประชาสัมพันธ์และสื่อสารองค์กร",3],
-        ["CA33201","การเขียนเพื่อการสื่อสารองค์กร",3],
-        ["CA33202","วาทนิเทศเพื่อการประชาสัมพันธ์",3],
-        ["CA33301","เทคนิคการนำเสนอและกลยุทธ์การโน้มน้าวใจ",3],
-        ["CA33401","การวางแผนการประชาสัมพันธ์และการรณรงค์",3]],
-    BC:[["CA34101","หลักการสื่อสารมวลชน",3],
-        ["CA34201","การเขียนบทสำหรับสื่อดิจิทัล",3],
-        ["CA34202","การสร้างสรรค์รายการวิทยุบนสื่อดิจิทัล",3],
-        ["CA34203","การสร้างสรรค์รายการโทรทัศน์บนสื่อดิจิทัล",3],
-        ["CA34301","การสื่อข่าววิทยุและโทรทัศน์ดิจิทัล",3]]}},
-  TRACK_ELEC:{label:"วิชาเอกเลือก · เลือกในกลุ่ม", need:12, color:"#F06595", track:true, courses:{
-    JN:[["CA32103","สื่อใหม่กับสังคม",3],["CA32202","กราฟิกสำหรับงานวารสารสนเทศและสื่อใหม่",3],
-        ["CA32203","การคิดสร้างสรรค์เพื่อการสื่อสาร",3],["CA32205","การเขียนสร้างสรรค์เพื่องานนิเทศศาสตร์",3],
-        ["CA32206","การสัมภาษณ์เพื่องานผลิตสื่อ",3],["CA32303","การผลิตสื่อสิ่งพิมพ์ดิจิทัล",3],
-        ["CA32304","การสร้างสรรค์สื่อใหม่เพื่อชุมชน",3],["CA32305","การสื่อสารข้ามวัฒนธรรม",3],
-        ["CA32306","การจัดการคลังข้อมูลเพื่องานวารสารสนเทศ",3],["CA32401","การบริหารจัดการสื่อใหม่",3],
-        ["CA32402","การวิเคราะห์ข่าวและสถานการณ์ปัจจุบัน",3]],
-    PR:[["CA33203","การสร้างภาพลักษณ์องค์กร",3],["CA33204","การผลิตกราฟิกเพื่องานประชาสัมพันธ์",3],
-        ["CA33205","สื่อประชาสัมพันธ์เพื่อการสื่อสารองค์กร",3],["CA33302","กลยุทธ์การสร้างภาพลักษณ์ตราสินค้า",3],
-        ["CA33303","สาธารณมติและการทำโพล",3],["CA33304","สื่อพื้นบ้านเพื่อการประชาสัมพันธ์",3],
-        ["CA33305","การสร้างสรรค์และผลิตงานโฆษณา",3],["CA33306","การเขียนขั้นสูงเพื่อการประชาสัมพันธ์",3],
-        ["CA33402","การจัดกิจกรรมพิเศษเพื่อการโฆษณาและประชาสัมพันธ์",3],
-        ["CA33403","การสื่อสารเพื่อการจัดการภาวะวิกฤติ",3],["CA33404","นวัตกรรมการผลิตสื่อในธุรกิจไมซ์",3]],
-    BC:[["CA34102","หลักการวิทยุและโทรทัศน์",3],["CA34204","การออกแบบเนื้อหาสำหรับผลิตสื่อวิทยุและโทรทัศน์",3],
-        ["CA34205","หลักการเป็นผู้ประกาศข่าวและพิธีกร",3],["CA34302","การไลฟ์ผ่านแพลตฟอร์มดิจิทัล",3],
-        ["CA34303","การลำดับภาพและสร้างสรรค์เสียง",3],["CA34304","ศิลปะการใช้เสียงเพื่องานวิทยุและโทรทัศน์",3],
-        ["CA34305","การผลิตกราฟิกเพื่องานวิทยุโทรทัศน์",3],["CA34306","การผลิตภาพยนตร์สั้น",3],
-        ["CA34307","การแสดงและการกำกับการแสดง",3],["CA34401","การบริหารงานวิทยุและโทรทัศน์",3],
-        ["CA34402","การออกแบบฉากและวัสดุอุปกรณ์ประกอบฉาก",3],
-        ["CA34403","การสื่อสารวัฒนธรรมผ่านอุตสาหกรรมบันเทิง",3]]}},
-  RELATED:{label:"วิชาที่สัมพันธ์", need:9, color:"#93A0B5", courses:[]},
-  FREE:{label:"วิชาเลือกเสรี", need:6, color:"#BCC6D6", courses:[]}
-};
-const ORDER = ["GE_LANG","GE_HUM","GE_SOC","GE_SCI","CORE","MAJOR_REQ","TRACK_REQ","TRACK_ELEC","RELATED","FREE"];
+/* ================= ข้อมูล ================= */
+const KEY="udru_selfcheck_v1";
+let DB=(()=>{try{const r=localStorage.getItem(KEY);if(r)return JSON.parse(r);}catch(e){}
+  return {me:{id:"",name:"",track:"JN",year:""},grades:[],logos:{uni:"",fac:"",prog:""}};})();
+const save=()=>localStorage.setItem(KEY,JSON.stringify(DB));
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const gr=code=>DB.grades.find(g=>g.code===code);
 
-/* ดัชนีรหัสวิชา → หมวด */
-const INDEX = {};
-ORDER.forEach(k=>{
-  const s = CUR[k];
-  if(s.track){ Object.keys(s.courses).forEach(tr=>s.courses[tr].forEach(c=>{
-      INDEX[c[0]] = {sec:k, track:tr, name:c[1], credit:c[2]}; })); }
-  else s.courses.forEach(c=>{ INDEX[c[0]] = {sec:k, name:c[1], credit:c[2]}; });
-});
-
-const GP = {"A":4,"B+":3.5,"B":3,"C+":2.5,"C":2,"D+":1.5,"D":1,"F":0};
-const NONGRADE = ["W","I","S","U"];   /* ไม่คิด GPA */
-const PASS_NONGRADE = ["S"];          /* ผ่านแต่ไม่คิดแต้ม */
-
-/* =========================================================
-   2) ข้อมูล
-   ========================================================= */
-const KEY = "udru_grad_audit_v1";
-let DB = load();
-
-function load(){
-  try{
-    const raw = localStorage.getItem(KEY);
-    if(raw) return JSON.parse(raw);
-  }catch(e){}
-  return {students:[], grades:[], logos:{uni:"",fac:"",prog:""}, cfg:{credits:128, gpa:2.00, risk:12, officer:"ผศ.ดร.เสกสรร สายสีสด"}};
-}
-function save(){ localStorage.setItem(KEY, JSON.stringify(DB)); }
-const $ = s=>document.querySelector(s);
-const esc = s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-
-/* =========================================================
-   3) เครื่องมือตรวจจบ (Rules Engine)
-   ========================================================= */
-function audit(sid){
-  const st = DB.students.find(s=>s.id===sid);
-  const track = (st && st.track) || "JN";
-  const rows = DB.grades.filter(g=>g.sid===sid);
-
-  const sec = {};
-  ORDER.forEach(k=>{
-    const s = CUR[k];
-    sec[k] = {key:k, label:s.label, need:s.need, color:s.color, earned:0, taken:[], plan: s.track ? (s.courses[track]||[]) : s.courses};
+/* ================= เครื่องมือตรวจจบ ================= */
+function audit(){
+  const track=DB.me.track||"JN";
+  const sec={};
+  ORDER.forEach(k=>{const s=CUR[k];
+    sec[k]={label:s.label,need:s.need,color:s.color,earned:0,taken:[],plan:s.track?(s.courses[track]||[]):s.courses};});
+  let gp=0,gc=0,rawPass=0;const pending=[];
+  const auto=[];
+  DB.grades.forEach(r=>{
+    const g=(r.grade||"").toUpperCase(),cr=+r.credits||0;
+    if(g in GP){gp+=GP[g]*cr;gc+=cr;}
+    const passed=(g in GP&&g!=="F")||g==="S";
+    if(!passed){if(g)pending.push(r);return;}
+    rawPass+=cr;
+    const i=INDEX[r.code];let t=null;
+    if(i&&(!i.track||i.track===track))t=i.sec;
+    if(!t && (r.bucket==="RELATED"||r.bucket==="FREE")) t=r.bucket;   /* นักศึกษาระบุเอง */
+    if(!t){ auto.push({r,cr}); return; }
+    sec[t].earned+=cr;sec[t].taken.push(r);
   });
-
-  let gp=0, gpCred=0, rawPass=0, pending=[], extra=[];
-
-  rows.forEach(r=>{
-    const g = (r.grade||"").toUpperCase().trim();
-    const cr = Number(r.credits)||0;
-    if(g in GP){ gp += GP[g]*cr; gpCred += cr; }
-    const passed = (g in GP && g!=="F") || PASS_NONGRADE.includes(g);
-    if(!passed){ pending.push(r); return; }
-    rawPass += cr;
-
-    const info = INDEX[r.code];
-    let target = null;
-    if(info){
-      if(!info.track) target = info.sec;
-      else if(info.track === track) target = info.sec;    /* อยู่ในกลุ่มเอกที่เลือก */
-    }
-    if(!target){
-      /* วิชานอกแผน / วิชาของกลุ่มอื่น → ลงวิชาที่สัมพันธ์ก่อน แล้วจึงเลือกเสรี */
-      if(sec.RELATED.earned < sec.RELATED.need) target = "RELATED";
-      else if(sec.FREE.earned < sec.FREE.need) target = "FREE";
-      else { extra.push(r); return; }
-    }
-    sec[target].earned += cr;
-    sec[target].taken.push(r);
+  auto.forEach(({r,cr})=>{                                            /* ที่เหลือเติมอัตโนมัติ */
+    let t = sec.RELATED.earned<sec.RELATED.need ? "RELATED"
+          : sec.FREE.earned<sec.FREE.need ? "FREE" : null;
+    if(!t) return;
+    sec[t].earned+=cr;sec[t].taken.push(r);
   });
-
-  /* รายวิชาที่ยังขาด (เฉพาะหมวดที่ระบุวิชาตายตัว) */
-  const missing = [];
-  ORDER.forEach(k=>{
-    if(!CUR[k].fixed) return;
-    const got = new Set(sec[k].taken.map(r=>r.code));
-    sec[k].plan.forEach(c=>{ if(!got.has(c[0])) missing.push({sec:k, code:c[0], name:c[1], credit:c[2]}); });
-  });
-
-  const earnedTotal = ORDER.reduce((a,k)=>a+Math.min(sec[k].earned, sec[k].need), 0);
-  const rawTotal    = ORDER.reduce((a,k)=>a+sec[k].earned, 0);
-  const gpa = gpCred ? gp/gpCred : null;
-
-  const cfg = DB.cfg;
-  const shortSecs = ORDER.filter(k=>sec[k].earned < sec[k].need);
-  const shortCredits = ORDER.reduce((a,k)=>a+Math.max(0, sec[k].need - sec[k].earned), 0);
-  const intern = sec.MAJOR_REQ.taken.some(r=>r.code==="CA38401");
-
+  const missing=[];
+  ORDER.forEach(k=>{ if(!CUR[k].fixed)return;
+    const got=new Set(sec[k].taken.map(r=>r.code));
+    sec[k].plan.forEach(c=>{if(!got.has(c[0]))missing.push({sec:k,code:c[0],name:c[1],credit:c[2]});});});
+  const earned=ORDER.reduce((a,k)=>a+Math.min(sec[k].earned,sec[k].need),0);
+  const short=ORDER.reduce((a,k)=>a+Math.max(0,sec[k].need-sec[k].earned),0);
+  const gpa=gc?gp/gc:null;
+  const intern=sec.MAJOR_REQ.taken.some(r=>r.code==="CA38401");
   let status;
-  if(!rows.length) status = "na";
-  else if(shortCredits===0 && earnedTotal>=cfg.credits && gpa!==null && gpa>=cfg.gpa && !pending.length) status = "ok";
-  else if(shortCredits<=cfg.risk && (gpa===null || gpa>=cfg.gpa-0.10)) status = "warn";
-  else status = "bad";
-
-  return {st, track, sec, missing, gpa, earnedTotal, rawTotal, rawPass, shortCredits, shortSecs, pending, extra, status, intern, rows};
+  if(!DB.grades.length)status="na";
+  else if(short===0&&earned>=NEED_TOTAL&&gpa>=NEED_GPA&&!pending.length)status="ok";
+  else if(short<=12&&(gpa===null||gpa>=NEED_GPA-0.1))status="warn";
+  else status="bad";
+  return {track,sec,missing,gpa,earned,rawPass,short,pending,status,intern};
 }
+const STATUS={ok:{t:"จบได้ตามกำหนด",c:"ok"},warn:{t:"ใกล้จบ — ยังขาดอีกนิด",c:"warn"},
+  bad:{t:"ยังต้องเรียนอีกมาก",c:"bad"},na:{t:"ยังไม่ได้กรอกเกรด",c:"na"}};
 
-const STATUS = {
-  ok:{t:"จบได้ตามกำหนด", c:"ok"},
-  warn:{t:"เสี่ยง — ต้องเร่งลงวิชา", c:"warn"},
-  bad:{t:"ไม่จบปีนี้", c:"bad"},
-  na:{t:"ยังไม่มีผลการเรียน", c:"na"}
-};
-
-/* =========================================================
-   4) หน้าจอ
-   ========================================================= */
-document.querySelectorAll("#tabs button").forEach(b=>{
-  b.onclick = ()=>{
-    document.querySelectorAll("#tabs button").forEach(x=>x.setAttribute("aria-current","false"));
-    b.setAttribute("aria-current","true");
-    document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));
-    $("#p-"+b.dataset.p).classList.add("on");
-    window.scrollTo(0,0);
-  };
+/* ================= แท็บ ================= */
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>{
+  document.querySelectorAll("#tabs button").forEach(x=>x.setAttribute("aria-current","false"));
+  b.setAttribute("aria-current","true");
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("on"));
+  $("#p-"+b.dataset.p).classList.add("on");window.scrollTo(0,0);renderAll();
 });
 
-function trackOpts(sel, all){
-  sel.innerHTML = (all?'<option value="">ทุกกลุ่มวิชาเอก</option>':'') +
-    Object.keys(TRACKS).map(k=>`<option value="${k}">${TRACKS[k].name}</option>`).join("");
-}
-trackOpts($("#sTrack"), false);
-trackOpts($("#fTrack"), true);
-$("#gGrade").innerHTML = [...Object.keys(GP), ...NONGRADE].map(g=>`<option>${g}</option>`).join("");
-
-/* ---- แดชบอร์ด ---- */
-function renderDash(){
-  const filt = $("#fTrack").value;
-  const list = DB.students.filter(s=>!filt || s.track===filt).map(s=>audit(s.id));
-  const c = {ok:0,warn:0,bad:0,na:0};
-  list.forEach(a=>c[a.status]++);
-
-  $("#dashSub").textContent = list.length
-    ? `นักศึกษา ${list.length} คน · จบได้ ${c.ok} คน (${(c.ok/list.length*100).toFixed(1)}%) · เกณฑ์ ${DB.cfg.credits} หน่วยกิต, GPA ≥ ${DB.cfg.gpa.toFixed(2)}`
-    : "ยังไม่มีข้อมูล";
-
-  $("#stats").innerHTML = [
-    ["ok","จบได้ตามกำหนด",c.ok],["warn","เสี่ยงไม่จบ",c.warn],
-    ["bad","ไม่จบปีนี้",c.bad],["","ยังไม่มีผลการเรียน",c.na]
-  ].map(([k,t,n])=>`<div class="stat ${k}"><b>${n}</b><span>${t}</span></div>`).join("");
-
-  const tb = $("#tDash tbody");
-  tb.innerHTML = list.length ? list.map(a=>`
-    <tr>
-      <td class="small">${esc(a.st.id)}</td>
-      <td><div style="display:flex;align-items:center;gap:8px">
-        ${a.st.photo?`<img src="${a.st.photo}" class="avatar-sm" alt="">`:`<div class="avatar-ph">·</div>`}
-        <button class="linkish" data-open="${esc(a.st.id)}">${esc(a.st.name)}</button></div></td>
-      <td class="small muted">${TRACKS[a.track].name}</td>
-      <td class="num">${a.earnedTotal}<span class="muted small">/${DB.cfg.credits}</span></td>
-      <td class="num">${a.gpa===null?"—":a.gpa.toFixed(2)}</td>
-      <td><span class="pill ${STATUS[a.status].c}">${STATUS[a.status].t}</span></td>
-    </tr>`).join("")
-    : `<tr><td colspan="6"><div class="empty"><b>ยังไม่มีนักศึกษาในรุ่นนี้</b>เพิ่มรายชื่อที่หน้า “นักศึกษา” หรือกดปุ่ม “ใส่ข้อมูลตัวอย่าง” เพื่อดูตัวอย่างการทำงาน</div></td></tr>`;
-  tb.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openSheet(b.dataset.open));
-
-  /* การกระจาย GPA */
-  const bins=[[0,1.5],[1.5,2],[2,2.5],[2.5,3],[3,3.5],[3.5,4.01]];
-  const cnt = bins.map(([a,b])=>list.filter(x=>x.gpa!==null && x.gpa>=a && x.gpa<b).length);
-  const mx = Math.max(1,...cnt);
-  $("#dist").innerHTML = bins.map(([a,b],i)=>`
-    <div><b style="color:var(--ink);font-size:12px">${cnt[i]||""}</b>
-    <i style="height:${cnt[i]/mx*70}px;${a<2?'background:var(--red)':''}"></i>
-    <span>${a.toFixed(1)}</span></div>`).join("");
-
-  /* watchlist */
-  const w = list.filter(a=>a.status==="bad"||a.status==="warn"||(a.gpa!==null&&a.gpa<DB.cfg.gpa)||a.pending.length);
-  $("#watch").innerHTML = w.length ? w.map(a=>{
-    const rs=[];
-    if(a.gpa!==null && a.gpa<DB.cfg.gpa) rs.push(`GPA ${a.gpa.toFixed(2)}`);
-    if(a.shortCredits) rs.push(`ขาด ${a.shortCredits} นก.`);
-    const f = a.pending.filter(p=>(p.grade||"").toUpperCase()==="F").length;
-    if(f) rs.push(`ติด F ${f} วิชา`);
-    if(!a.intern) rs.push("ยังไม่ฝึกประสบการณ์");
-    return `<div style="display:flex;gap:8px;padding:8px 0;border-bottom:1px dashed var(--line)">
-      <button class="linkish" data-open="${esc(a.st.id)}" style="min-width:110px">${esc(a.st.name)}</button>
-      <span class="muted">${rs.join(" · ")||"—"}</span></div>`;
-  }).join("") : `<p class="muted small" style="margin:0">ไม่มีรายชื่อที่ต้องติดตาม</p>`;
-  $("#watch").querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openSheet(b.dataset.open));
-}
-$("#fTrack").onchange = renderDash;
-
-/* ---- รูปนักศึกษา (ครอบจัตุรัส ย่อ 256px บีบอัดให้เล็กกว่า ~40KB) ---- */
+/* ================= 1) ข้อมูลของฉัน ================= */
+$("#mTrack").innerHTML=Object.keys(TRACKS).map(k=>`<option value="${k}">${TRACKS[k].name}</option>`).join("");
+$("#oGrade").innerHTML=[...Object.keys(GP),...OTHERG].map(g=>`<option>${g}</option>`).join("");
+$("#allCodes").innerHTML=Object.keys(INDEX).map(c=>`<option value="${c}">${INDEX[c].name}</option>`).join("");
+/* ---- รูปนักศึกษา: ครอบเป็นสี่เหลี่ยมจัตุรัส ย่อ 256px แล้วบีบอัดจนเล็กกว่า ~40KB ---- */
 function compressPhoto(file,box=256,limit=40000){
   return new Promise((res,rej)=>{
     if(file.size>12*1024*1024) return rej(new Error("ไฟล์ใหญ่เกิน 12 MB"));
@@ -735,110 +427,218 @@ function compressPhoto(file,box=256,limit=40000){
     img.onerror=()=>rej(new Error("เปิดไฟล์รูปไม่ได้"));
     img.onload=()=>{
       const side=Math.min(img.width,img.height);
-      const cv=document.createElement("canvas"); cv.width=cv.height=box;
-      cv.getContext("2d").drawImage(img,(img.width-side)/2,(img.height-side)/2,side,side,0,0,box,box);
+      const cv=document.createElement("canvas");
+      cv.width=cv.height=box;
+      const cx=cv.getContext("2d");
+      cx.drawImage(img,(img.width-side)/2,(img.height-side)/2,side,side,0,0,box,box);
       let q=0.72,url=cv.toDataURL("image/jpeg",q);
       while(url.length>limit*1.37 && q>0.35){ q-=0.1; url=cv.toDataURL("image/jpeg",q); }
-      URL.revokeObjectURL(img.src); res(url);
+      URL.revokeObjectURL(img.src);
+      res(url);
     };
     img.src=URL.createObjectURL(file);
   });
 }
-
-/* ---- นักศึกษา ---- */
-function renderStu(){
-  $("#cntStu").textContent = DB.students.length;
-  const tb = $("#tStu tbody");
-  tb.innerHTML = DB.students.length ? DB.students.map(s=>`
-    <tr>
-      <td><label style="cursor:pointer" title="กดเพื่อเปลี่ยนรูป">
-        ${s.photo?`<img src="${s.photo}" class="avatar-sm" alt="">`:`<div class="avatar-ph">+</div>`}
-        <input type="file" accept="image/*" data-ph="${esc(s.id)}" hidden></label></td>
-      <td class="small">${esc(s.id)}</td>
-      <td><button class="linkish" data-open="${esc(s.id)}">${esc(s.name)}</button></td>
-      <td><select data-tr="${esc(s.id)}" style="min-width:170px">${Object.keys(TRACKS).map(k=>
-        `<option value="${k}" ${s.track===k?"selected":""}>${TRACKS[k].name}</option>`).join("")}</select></td>
-      <td><button class="btn sm danger" data-del="${esc(s.id)}">ลบ</button></td>
-    </tr>`).join("")
-    : `<tr><td colspan="5"><div class="empty"><b>ยังไม่มีรายชื่อ</b>กรอกแบบฟอร์มด้านขวาเพื่อเพิ่มนักศึกษาคนแรก</div></td></tr>`;
-  tb.querySelectorAll("[data-open]").forEach(b=>b.onclick=()=>openSheet(b.dataset.open));
-  tb.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{
-    if(!confirm("ลบนักศึกษาและผลการเรียนของคนนี้?")) return;
-    DB.students = DB.students.filter(s=>s.id!==b.dataset.del);
-    DB.grades = DB.grades.filter(g=>g.sid!==b.dataset.del);
-    save(); renderAll();
-  });
-  tb.querySelectorAll("[data-tr]").forEach(sl=>sl.onchange=()=>{
-    const s = DB.students.find(x=>x.id===sl.dataset.tr); s.track = sl.value; save(); renderAll();
-  });
-
-  const opts = DB.students.map(s=>`<option value="${esc(s.id)}">${esc(s.name)} (${esc(s.id)})</option>`).join("");
-  $("#gStu").innerHTML = opts || `<option value="">— ยังไม่มีนักศึกษา —</option>`;
-  if($("#fileStu")) $("#fileStu").innerHTML = opts || `<option value="">— ยังไม่มีนักศึกษา —</option>`;
-  $("#fStu").innerHTML = `<option value="">ทุกคน</option>` + opts;
+function renderPhoto(){
+  const ph=DB.me.photo;
+  $("#mPhotoBox").innerHTML = ph
+    ? `<img src="${ph}" class="avatar" alt="รูปนักศึกษา">`
+    : `<div class="avatar-ph">ยังไม่มี<br>รูป</div>`;
+  $("#btnDelPhoto").style.display = ph?"inline-block":"none";
 }
-$("#btnAddStu").onclick = ()=>{
-  const id = $("#sId").value.trim(), name = $("#sName").value.trim();
-  if(!id || !name) return alert("กรอกรหัสนักศึกษาและชื่อ-สกุลให้ครบ");
-  if(DB.students.some(s=>s.id===id)) return alert("มีรหัสนักศึกษานี้อยู่แล้ว");
-  DB.students.push({id, name, track:$("#sTrack").value});
-  save(); $("#sId").value=""; $("#sName").value=""; renderAll();
+$("#mPhoto").onchange = async e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const msg=$("#photoMsg");
+  msg.innerHTML=`<span class="pill warn">กำลังย่อรูป...</span>`;
+  try{
+    const url=await compressPhoto(f);
+    DB.me.photo=url; save(); renderAll();
+    $("#photoMsg").innerHTML=`<span class="pill ok">บันทึกรูปแล้ว (${Math.round(url.length*0.75/1024)} KB)</span>`;
+  }catch(err){ msg.innerHTML=`<span class="pill bad">${esc(err.message)}</span>`; }
+  e.target.value="";
 };
-$("#btnClearStu").onclick = ()=>{
-  if(!confirm("ลบนักศึกษาและผลการเรียนทั้งหมด?")) return;
-  DB.students=[]; DB.grades=[]; save(); renderAll();
-};
+$("#btnDelPhoto").onclick=()=>{ delete DB.me.photo; save(); renderAll(); };
 
-/* ---- ผลการเรียน ---- */
-function renderGr(){
-  const f = $("#fStu").value;
-  const rows = DB.grades.filter(g=>!f || g.sid===f);
-  $("#cntGr").textContent = DB.grades.length;
-  const tb = $("#tGr tbody");
-  tb.innerHTML = rows.length ? rows.map((g,i)=>{
-    const idx = DB.grades.indexOf(g);
-    const bad = !(g.grade in GP) || g.grade==="F";
-    return `<tr>
-      <td class="small">${esc(g.sid)}</td>
-      <td class="small"><b>${esc(g.code)}</b></td>
-      <td class="small">${esc(g.name || (INDEX[g.code]?.name) || "—")}</td>
-      <td class="num">${g.credits}</td>
-      <td><span class="pill ${bad?'bad':'ok'}">${esc(g.grade)}</span></td>
-      <td><button class="btn sm danger" data-dg="${idx}">ลบ</button></td>
-    </tr>`;}).join("")
-    : `<tr><td colspan="6"><div class="empty"><b>ยังไม่มีผลการเรียน</b>นำเข้าไฟล์ CSV จากระบบทะเบียน หรือกรอกรายวิชาด้านซ้าย</div></td></tr>`;
-  tb.querySelectorAll("[data-dg]").forEach(b=>b.onclick=()=>{
-    DB.grades.splice(+b.dataset.dg,1); save(); renderAll();
-  });
+function renderMe(){
+  $("#mId").value=DB.me.id;$("#mName").value=DB.me.name;
+  $("#mTrack").value=DB.me.track||"JN";$("#mYear").value=DB.me.year||"";
+  renderPhoto();
 }
-$("#fStu").onchange = renderGr;
-
-$("#btnAddGr").onclick = ()=>{
-  const sid = $("#gStu").value, code = $("#gCode").value.trim().toUpperCase();
-  if(!sid) return alert("เพิ่มนักศึกษาก่อน");
-  if(!code) return alert("กรอกรหัสวิชา");
-  const info = INDEX[code];
-  const credits = Number($("#gCredit").value) || info?.credit || 3;
-  const name = $("#gName").value.trim() || info?.name || "";
-  DB.grades.push({sid, code, name, credits, grade:$("#gGrade").value, term:""});
-  save(); $("#gCode").value=""; $("#gName").value=""; $("#gCredit").value=""; renderAll();
+$("#btnSaveMe").onclick=()=>{
+  DB.me={...DB.me,id:$("#mId").value.trim(),name:$("#mName").value.trim(),track:$("#mTrack").value,year:$("#mYear").value.trim()};
+  save();renderAll();alert("บันทึกแล้ว — ไปหน้า “กรอกเกรด” ได้เลย");
 };
-$("#btnClearGr").onclick = ()=>{
-  if(!confirm("ลบผลการเรียนทั้งหมด (รายชื่อยังอยู่)?")) return;
-  DB.grades=[]; save(); renderAll();
+$("#btnExp").onclick=()=>{
+  const d=new Date(),p=n=>String(n).padStart(2,"0");
+  dl(JSON.stringify(DB,null,2),`เช็คจบ_${DB.me.id||"ฉัน"}_${d.getFullYear()+543}${p(d.getMonth()+1)}${p(d.getDate())}.json`,"application/json");
+};
+$("#imp").onchange=e=>{const f=e.target.files[0];if(!f)return;const fr=new FileReader();
+  fr.onload=()=>{try{const d=JSON.parse(fr.result);if(!d.grades)throw 0;
+    if(!confirm("โหลดไฟล์จะเขียนทับข้อมูลเดิม ดำเนินการต่อ?"))return;
+    DB=d;save();renderAll();alert("โหลดข้อมูลแล้ว");}catch(x){alert("ไฟล์ไม่ถูกต้อง");}e.target.value="";};
+  fr.readAsText(f);};
+$("#btnWipe").onclick=()=>{if(!confirm("ล้างข้อมูลทั้งหมดในเครื่องนี้?"))return;
+  localStorage.removeItem(KEY);DB={me:{id:"",name:"",track:"JN",year:""},grades:[],logos:{uni:"",fac:"",prog:""}};renderAll();};
+function dl(t,n,ty){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:ty}));a.download=n;a.click();URL.revokeObjectURL(a.href);}
+
+/* ================= โลโก้ ================= */
+const DEFAULT_LOGOS={
+  uni:"data:image/png;base64,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",
+  fac:"data:image/png;base64,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",
+  prog:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAMAAAC8EZcfAAABgFBMVEVY0uJslqDaE4YLHSifHmUmXGvd1OAaut6Z1d/YXZ0miauYoqkDMU0wkkbertCcuMQSaCojkDoicpRZk2R3FUycSXerzbRUeIZNZWzJGXlvATzKobk20t1gr8m3SoS4OIHBQn/9/f0HyPICSGkDZpG0W5cDVHfu6O0DeanHXKYDOFIDhLawZZjFYaYCW4PR9/nU19fLx8sElc2PA1Dt1+iHh4cC0fuWl5eR5e53d3cCi8MHcpoux+PZt9CoqKjHl7jSqMa6ZKO2d6Nv2Oas6vLMA3e2t7ctxdmyAmkSxNwGQlzXN403NzfFibDaSJLR6Oy7XKHZJ4knJydnZ2dXV1eNqLO7hau18/bJV5flxttKytoSdysYhTJHR0eyyNCxcpoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACpPSGhAAAAYHRSTlP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9ebwvOAAAUOUlEQVR42u2dCVcayRbH6SCIYDDjEk3M5L0WsUQb6VZaIMrOwFMhEDbBDPr9v8W7t6q6u5q12ZI577w6M+MK/ev/Xet2JeOS/+HL9X/AfwAgifeDuWC2VusWcHVrtWwuHfTGyT8AkHjT2W5BCY9ZilKoBdNe8vsAST/XfQO2RiQSjUSjEXFFYeWjiFmo5ZaCXBSQpLNvcP0IhYugYg0UTcnnuZwNgxu+/ZZNk18KSNJdRQk3UKUexdoCr8ultX4/Hvd6++l0LpetFShqD9WET5Ran/wqQG9WodJFqDjd4/T4aCDgn8dd5gL0dwvZ+C8ARPHCCrVc2Il7EW+uVgij2pFeWOlqZL2AJFdQ+LUKWZvNYrHnUjLpg5VMJkvPsZjdXyHQwSPBTQvzeqNrLrw3Lp4i0MVKyaLrpVJ5ODHW5uZJ5d7lciVLMSviwS8aeWrp9JoASfqNqaBsGSrEYklX5d7gusXF/gsf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"
+};
+const LOGOS=[["uni","มหาวิทยาลัย","มรภ."],["fac","คณะวิทยาการจัดการ","คณะ"],["prog","สาขาวิชานิเทศศาสตร์","นิเทศ"]];
+const logoOf=k=>(DB.logos&&DB.logos[k])||DEFAULT_LOGOS[k]||"";
+function renderLogos(){
+  DB.logos=DB.logos||{uni:"",fac:"",prog:""};
+  if(!$("#logoBox")) return;
+  $("#logoBox").innerHTML=LOGOS.map(([k,t,ph])=>`
+    <div class="logo-slot">
+      <img src="${logoOf(k)}" alt="${t}">
+      <div class="small" style="font-weight:600">${t}</div>
+      <div style="display:flex;gap:6px;justify-content:center;margin-top:6px">
+        <label class="btn sm" style="width:auto">เลือกไฟล์<input type="file" accept="image/*" data-lg="${k}" hidden></label>
+        ${DB.logos[k]?`<button class="btn sm danger" data-lgdel="${k}">คืนค่าเดิม</button>`:""}
+      </div>
+    </div>`).join("");
+  $("#logoBox").querySelectorAll("[data-lg]").forEach(ip=>ip.onchange=e=>{
+    const f=e.target.files[0];if(!f)return;
+    if(f.size>600000)return alert("ไฟล์ใหญ่เกินไป — ใช้ไฟล์ไม่เกิน 600 KB");
+    const fr=new FileReader();fr.onload=()=>{DB.logos[ip.dataset.lg]=fr.result;save();renderAll();};fr.readAsDataURL(f);});
+  $("#logoBox").querySelectorAll("[data-lgdel]").forEach(b=>b.onclick=()=>{DB.logos[b.dataset.lgdel]="";save();renderAll();});
+  $("#brandLogos").innerHTML=LOGOS.map(([k,t])=>`<img src="${logoOf(k)}" alt="${t}">`).join("");
+}
+function printLogos(){
+  return `<div class="print-logos">${LOGOS.map(([k,t])=>`<img src="${logoOf(k)}" alt="${t}">`).join("")}</div>`;
+}
+
+/* ================= 2) กรอกเกรด ================= */
+const GOPTS=`<option value="">—</option>`+[...Object.keys(GP),...OTHERG].map(g=>`<option>${g}</option>`).join("");
+function renderLock(){
+  const on=!!DB.lock;
+  $("#lockBar").innerHTML=`<div class="card"><div class="pad" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+    <span style="font-size:20px">${on?"🔒":"✏️"}</span>
+    <div style="flex:1;min-width:220px">
+      <div style="font-weight:600">${on?"เกรดถูกล็อกไว้ตามไฟล์ผลการเรียน":"โหมดกรอกเกรดเอง"}</div>
+      <div class="small muted">${on
+        ? "แก้ไขไม่ได้ เพื่อให้ผลตรงกับใบแจ้งผลการเรียนที่นำเข้ามา"
+        : "เลือกเกรดได้เอง — เมื่อกรอกครบแล้วแนะนำให้กดล็อกไว้ กันแก้ผิดโดยไม่ตั้งใจ"}</div>
+    </div>
+    <button class="btn ${on?"":"primary"}" id="btnLock">${on?"ปลดล็อกเพื่อแก้ไข":"ล็อกเกรด"}</button>
+  </div></div>`;
+  $("#btnLock").onclick=()=>{
+    if(!DB.lock && !confirm("ล็อกเกรดไว้ ไม่ให้แก้ไขโดยไม่ตั้งใจใช่ไหม?")) return;
+    if(DB.lock && !confirm("ปลดล็อกเพื่อแก้เกรดเอง? ผลอาจไม่ตรงกับใบแจ้งผลการเรียน")) return;
+    DB.lock=!DB.lock; save(); renderAll();
+  };
+}
+function renderFill(){
+  const track=DB.me.track||"JN";
+  renderLock();
+  const locked=!!DB.lock;
+  const a=audit();
+  $("#fillCredit").textContent=a.earned;
+  $("#fillGpa").textContent=a.gpa===null?"—":a.gpa.toFixed(2);
+  const pct=Math.min(100,a.earned/NEED_TOTAL*100);
+  $("#fillBar").style.width=pct+"%";
+  $("#fillBarWrap").className="bar"+(a.earned>=NEED_TOTAL?" done":a.earned?" short":"");
+  $("#fillHint").textContent=`เกณฑ์จบ ${NEED_TOTAL} หน่วยกิต · เหลืออีก ${Math.max(0,NEED_TOTAL-a.earned)} หน่วยกิต`;
+
+  const secs=["GE_LANG","GE_HUM","GE_SOC","GE_SCI","CORE","MAJOR_REQ","TRACK_REQ","TRACK_ELEC"];
+  $("#fillList").innerHTML=secs.map(k=>{
+    const s=CUR[k],list=s.track?s.courses[track]:s.courses;
+    const done=list.filter(c=>{const g=gr(c[0]);return g&&(g.grade in GP)&&g.grade!=="F";})
+                   .reduce((x,c)=>x+c[2],0);
+    return `<div class="card"><div class="pad">
+      <div class="sechead">
+        <span class="dot" style="background:${s.color}"></span>
+        <b>${s.label}</b>
+        <span class="cnt">${done} / ${s.need} หน่วยกิต${k==="TRACK_ELEC"?" (เลือก 4 วิชา)":""}</span>
+      </div>
+      ${list.map(c=>{
+        const g=gr(c[0]),v=g?g.grade:"",t=g?(g.term||""):"";
+        const cls=v?((v in GP&&v!=="F")?"done":"fail"):"";
+        const gCell = locked
+          ? `<div class="g">${v?`<span class="pill ${(v in GP&&v!=="F")?"ok":"bad"}">${esc(v)}</span>`:`<span class="small muted">—</span>`}</div>`
+          : `<select class="g" data-code="${c[0]}" data-name="${esc(c[1])}" data-cr="${c[2]}">${
+              GOPTS.replace(`<option>${v}</option>`,`<option selected>${v}</option>`)}</select>`;
+        const tCell = locked
+          ? `<div class="t small muted">${esc(t||"—")}</div>`
+          : `<input class="t" data-term="${c[0]}" value="${esc(t)}" placeholder="ภาคเรียน">`;
+        return `<div class="crow ${cls}">
+          <div class="cd">${c[0]}</div>
+          <div class="cn">${esc(c[1])}</div>
+          <div class="cc">${c[2]}</div>
+          ${gCell}${tCell}
+        </div>`;}).join("")}
+    </div></div>`;}).join("");
+
+  $("#fillList").querySelectorAll("select[data-code]").forEach(sl=>sl.onchange=()=>{
+    setGrade(sl.dataset.code,sl.dataset.name,+sl.dataset.cr,sl.value,
+      $(`#fillList input[data-term="${sl.dataset.code}"]`).value);
+    renderAll();
+  });
+  $("#fillList").querySelectorAll("input[data-term]").forEach(ip=>ip.onchange=()=>{
+    const g=gr(ip.dataset.term); if(g){g.term=ip.value.trim();save();}
+  });
+
+  /* วิชาอื่น ๆ */
+  const others=DB.grades.filter(r=>{const i=INDEX[r.code];return !i||(i.track&&i.track!==track);});
+  const A=audit();
+  const secOf=c=>{ let n="—"; ["RELATED","FREE"].forEach(k=>{ if(A.sec[k].taken.some(x=>x.code===c)) n=CUR[k].label; }); return n; };
+  $("#otherList").innerHTML=others.length?`<table><thead><tr><th>รหัส</th><th>ชื่อวิชา</th><th class="num">นก.</th><th>เกรด</th><th>ภาคเรียน</th><th>นับเป็นหมวด</th><th></th></tr></thead><tbody>${
+    others.map(r=>`<tr>
+      <td><b>${esc(r.code)}</b></td><td>${esc(r.name||INDEX[r.code]?.name||"—")}</td>
+      <td class="num">${r.credits}</td>
+      <td><span class="pill ${(r.grade in GP&&r.grade!=="F")?"ok":"bad"}">${esc(r.grade)}</span></td>
+      <td class="small muted">${esc(r.term||"—")}</td>
+      <td><select data-sec="${esc(r.code)}" style="width:132px;padding:3px 6px">
+        <option value="" ${!r.bucket?"selected":""}>อัตโนมัติ (${esc(secOf(r.code))})</option>
+        <option value="RELATED" ${r.bucket==="RELATED"?"selected":""}>วิชาที่สัมพันธ์</option>
+        <option value="FREE" ${r.bucket==="FREE"?"selected":""}>เลือกเสรี</option>
+      </select></td>
+      <td>${locked?"":`<button class="btn sm danger" data-rm="${esc(r.code)}">ลบ</button>`}</td></tr>`).join("")}</tbody></table>
+      <div class="note" style="margin-top:10px">ถ้าระบบจัดหมวดผิด เช่น วิชาที่ลงเป็น <b>เลือกเสรี</b> ถูกนับเป็นวิชาที่สัมพันธ์ ให้เปลี่ยนในช่อง "นับเป็นหมวด" ได้เลย (แก้ได้แม้เกรดถูกล็อก)</div>`
+    :`<p class="small muted" style="margin:0">ยังไม่มีวิชาอื่น — วิชาที่สัมพันธ์ (9 นก.) และเลือกเสรี (6 นก.) เพิ่มได้ที่ช่องด้านบน</p>`;
+  $("#otherList").querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{
+    DB.grades=DB.grades.filter(g=>g.code!==b.dataset.rm);save();renderAll();});
+  $("#otherList").querySelectorAll("[data-sec]").forEach(sl=>sl.onchange=()=>{
+    const g=gr(sl.dataset.sec); if(!g) return;
+    if(sl.value) g.bucket=sl.value; else delete g.bucket;
+    save(); renderAll();});
+}
+function setGrade(code,name,cr,grade,term){
+  const i=DB.grades.findIndex(g=>g.code===code);
+  if(!grade){ if(i>=0)DB.grades.splice(i,1); }
+  else if(i>=0){ DB.grades[i].grade=grade; DB.grades[i].term=term||DB.grades[i].term||""; if(cr) DB.grades[i].credits=cr; }
+  else DB.grades.push({code,name,credits:cr,grade,term:term||""});
+  save();
+}
+$("#btnAddOther").onclick=()=>{
+  const code=$("#oCode").value.trim().toUpperCase();
+  if(!code)return alert("กรอกรหัสวิชา");
+  if(gr(code))return alert("มีวิชานี้อยู่แล้ว");
+  const i=INDEX[code];
+  setGrade(code,$("#oName").value.trim()||i?.name||"",+$("#oCr").value||i?.credit||3,$("#oGrade").value,$("#oTerm").value.trim());
+  const b=$("#oSec").value, row=gr(code);
+  if(row){ if(b) row.bucket=b; else delete row.bucket; }
+  save();
+  $("#oCode").value="";$("#oName").value="";$("#oCr").value="";
+  renderAll();
 };
 
-
-/* =========================================================
-   อ่านใบแจ้งผลการเรียน: PDF (ข้อความจริง) / ภาพ (OCR 2 รอบ)
-   ========================================================= */
-const ALLG=[...Object.keys(GP),...NONGRADE];
+/* ---- อ่านข้อมูล: วางข้อความ / อ่านจากภาพ ---- */
 const GRADE_RE=/^(A|B\+|B|C\+|C|D\+|D|F|W|I|S|U)$/;
+const ALLG=[...Object.keys(GP),...OTHERG];
 const CODES=Object.keys(INDEX);
 let PENDING=[];
 
-function lev(a,b){const m=[];for(let i=0;i<=b.length;i++){m[i]=[i];for(let j=1;j<=a.length;j++)
-  m[i][j]=i?Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(b[i-1]===a[j-1]?0:1)):j;}return m[b.length][a.length];}
+/* แก้รหัสวิชาที่ OCR อ่านเพี้ยน แล้วเทียบกับรหัสจริงในหลักสูตร (ยอมผิดได้ 1 ตัว) */
+function lev(a,b){
+  const m=[];for(let i=0;i<=b.length;i++){m[i]=[i];for(let j=1;j<=a.length;j++)
+    m[i][j]=i?Math.min(m[i-1][j]+1,m[i][j-1]+1,m[i-1][j-1]+(b[i-1]===a[j-1]?0:1)):j;}
+  return m[b.length][a.length];
+}
 function normCode(raw){
   let c=raw.toUpperCase().replace(/[\s.\-]/g,"");
   const L=c.slice(0,2).replace(/0/g,"O").replace(/1/g,"I").replace(/5/g,"S").replace(/8/g,"B");
@@ -848,12 +648,14 @@ function normCode(raw){
   if(INDEX[c]) return c;
   let best=null,bd=2;
   CODES.forEach(k=>{const d=lev(k,c); if(d<bd){bd=d;best=k;}});
-  return best || (/^[A-Z]{2}\d{5}$/.test(c)?c:null);
+  if(best) return best;
+  return /^[A-Z]{2}\d{5}$/.test(c)?c:null;
 }
 function parseLine(raw){
   const m=raw.match(/[A-Za-z]{2}\s?[0-9A-Za-z]{5}/);
   if(!m) return null;
-  const code=normCode(m[0]); if(!code) return null;
+  const code=normCode(m[0]);
+  if(!code) return null;
   const rest=raw.slice(m.index+m[0].length);
   let credit=0,tail=rest;
   const cm=rest.match(/(\d)\s*\(\s*\d+\s*-\s*\d+\s*-\s*\d+\s*\)/);
@@ -864,37 +666,101 @@ function parseLine(raw){
   if(!grade) grade=scan(rest.split(/[\s\t|,]+/).filter(Boolean).reverse());
   if(!credit){ const d=rest.match(/(?:^|\s)([1-9])(?:\s|$)/); if(d) credit=+d[1]; }
   const info=INDEX[code];
-  return {code,name:info?info.name:rest.replace(/[\d()\-\s]+$/,"").trim(),
-          credits:credit||info?.credit||3, grade, known:!!info};
+  let nm = info ? info.name
+        : (cm ? rest.slice(0,cm.index) : rest)
+            .replace(/[\d()\-\s]+$/,"").replace(/\s+/g," ").trim();
+  return {code,name:nm, credits:credit||info?.credit||3, grade, known:!!info};
+}
+function detectTerm(line){
+  let m=line.match(/ภาคเรียนที่\s*([1-3])\D{0,20}?(25\d{2})/);
+  if(m) return `${m[1]}/${m[2]}`;
+  m=line.match(/(?:^|\s)([1-3])\s*\/\s*(25\d{2})(?:\s|$)/);
+  if(m) return `${m[1]}/${m[2]}`;
+  return "";
 }
 function parseText(text){
-  const out=[];
+  const out=[],bad=[]; let cur="";
   text.split(/\r?\n/).forEach(l=>{
-    const r=parseLine(l.trim()); if(!r) return;
+    const raw=l.trim(); if(!raw) return;
+    const r=parseLine(raw);
+    if(!r){ const t=detectTerm(raw); if(t) cur=t; else if(raw.length>4) bad.push(raw); return; }
+    if(cur) r.term=cur;
     const ex=out.find(x=>x.code===r.code);
-    if(ex){ if(!ex.grade&&r.grade) ex.grade=r.grade; } else out.push(r);
+    if(ex){ if(!ex.grade&&r.grade) ex.grade=r.grade; if(!ex.term&&r.term) ex.term=r.term; }
+    else out.push(r);
   });
-  return out;
+  return {out,bad};
 }
-function mergeRuns(a,b,texts){
+/* รวมผลจาก OCR สองรอบ + เติมเกรดที่ขาดโดยจับคู่ตามลำดับที่ปรากฏ */
+function mergeRuns(rA,rB,rawTexts){
   const map=new Map();
-  [...a,...b].forEach(r=>{const e=map.get(r.code);
-    if(!e) map.set(r.code,{...r}); else if(!e.grade&&r.grade) e.grade=r.grade;});
+  [...rA.out,...rB.out].forEach(r=>{
+    const e=map.get(r.code);
+    if(!e) map.set(r.code,{...r});
+    else { if(!e.grade&&r.grade) e.grade=r.grade; if(!e.credits&&r.credits) e.credits=r.credits; if(!e.term&&r.term) e.term=r.term; }
+  });
   const out=[...map.values()];
   if(out.some(r=>!r.grade)){
     const seq=[];
-    texts.join("\n").split(/[\s\t|,\n]+/).forEach(t=>{
-      const g=t.replace(/[^A-Za-z+]/g,"").toUpperCase(); if(GRADE_RE.test(g)) seq.push(g);});
+    rawTexts.join("\n").split(/[\s\t|,\n]+/).forEach(t=>{
+      const g=t.replace(/[^A-Za-z+]/g,"").toUpperCase();
+      if(GRADE_RE.test(g)) seq.push(g);
+    });
     if(seq.length===out.length) out.forEach((r,i)=>{ if(!r.grade) r.grade=seq[i]; });
   }
   return out;
 }
+
+function showPreview(out,bad,term,src){
+  PENDING=out;
+  if(!out.length){ $("#pPreview").innerHTML=`<div class="note">อ่านข้อมูลไม่ได้ — ต้องมีรหัสวิชา (เช่น CA31103) อยู่ในแต่ละบรรทัด</div>`; return; }
+  const noGrade=out.filter(r=>!r.grade).length;
+  $("#pPreview").innerHTML=`
+    <div class="small muted" style="margin-bottom:6px">อ่านได้ ${out.length} วิชา${src?` จาก${src}`:""}${
+      out.some(r=>r.term)?` · พบภาคเรียน <b>${esc([...new Set(out.filter(r=>r.term).map(r=>r.term))].join(", "))}</b> ในไฟล์`:""} — ตรวจก่อนบันทึก</div>
+    ${noGrade?`<div class="note" style="margin-bottom:8px">อ่านเกรดไม่ได้ ${noGrade} วิชา — เลือกเกรดเองในตารางด้านล่างได้เลย</div>`:""}
+    <table><thead><tr><th>รหัสวิชา</th><th>ชื่อวิชา</th><th class="num">นก.</th><th>เกรด</th><th>ภาคเรียน</th><th>สถานะ</th></tr></thead>
+    <tbody>${out.map((r,i)=>`<tr>
+      <td><b>${esc(r.code)}</b></td><td>${esc(r.name||"—")}</td>
+      <td class="num"><input type="number" min="1" max="9" value="${r.credits}" data-pc="${i}" style="width:56px;padding:3px 6px"></td>
+      <td><select data-pg="${i}" style="width:80px;padding:3px 6px;${r.grade?"":"border-color:var(--red)"}">${
+        ['',...ALLG].map(g=>`<option ${g===r.grade?"selected":""}>${g}</option>`).join("")}</select></td>
+      <td><input value="${esc(r.term||term||"")}" data-pt="${i}" placeholder="1/2568" style="width:82px;padding:3px 6px"></td>
+      <td class="small ${r.known?"muted":""}">${r.known?"อยู่ในหลักสูตร":(gr(r.code)?"มีอยู่แล้ว จะเขียนทับ":"วิชานอกแผน → นับเป็นสัมพันธ์/เสรี")}</td>
+    </tr>`).join("")}</tbody></table>
+    <div style="display:flex;gap:8px;margin-top:12px">
+      <button class="btn primary" id="btnCommit">บันทึกทั้งหมด${term?` (ภาค ${esc(term)})`:""}</button>
+      <button class="btn" id="btnCancelPaste">ยกเลิก</button>
+    </div>`;
+  $("#pPreview").querySelectorAll("[data-pg]").forEach(sl=>sl.onchange=()=>{
+    PENDING[+sl.dataset.pg].grade=sl.value; sl.style.borderColor=sl.value?"":"var(--red)";});
+  $("#pPreview").querySelectorAll("[data-pc]").forEach(ip=>ip.onchange=()=>PENDING[+ip.dataset.pc].credits=+ip.value||3);
+  $("#pPreview").querySelectorAll("[data-pt]").forEach(ip=>ip.onchange=()=>PENDING[+ip.dataset.pt].term=ip.value.trim());
+  $("#btnCommit").onclick=()=>{
+    const ok=PENDING.filter(r=>r.grade);
+    if(!ok.length) return alert("ยังไม่ได้เลือกเกรดสักวิชา");
+    ok.forEach(r=>setGrade(r.code,r.name,r.credits,r.grade,r.term||term));
+    DB.lock=true; save();
+    $("#paste").value=""; $("#pPreview").innerHTML=""; PENDING=[];
+    renderAll(); alert(`บันทึกแล้ว ${ok.length} วิชา — ระบบล็อกเกรดไว้ให้ตรงกับไฟล์แล้ว`);
+  };
+  $("#btnCancelPaste").onclick=()=>{ $("#pPreview").innerHTML=""; PENDING=[]; };
+}
+$("#btnParse").onclick=()=>{
+  const {out,bad}=parseText($("#paste").value);
+  showPreview(out,bad,$("#pTerm").value.trim(),"");
+};
+
+/* ---- อ่านไฟล์: PDF (ข้อความจริง) หรือ ภาพ (OCR) ---- */
 const PDFJS_SRC="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js";
 const PDFJS_WORKER="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
 const TESS_SRC="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js";
-function loadScript(src){return new Promise((res,rej)=>{const el=document.createElement("script");
-  el.src=src;el.onload=res;el.onerror=()=>rej(new Error("โหลดตัวอ่านไฟล์ไม่ได้ — ต้องต่ออินเทอร์เน็ตครั้งแรก"));
-  document.head.appendChild(el);});}
+
+function loadScript(src){
+  return new Promise((res,rej)=>{const s=document.createElement("script");s.src=src;s.onload=res;
+    s.onerror=()=>rej(new Error("โหลดตัวอ่านไฟล์ไม่ได้ — ต้องต่ออินเทอร์เน็ตครั้งแรก"));document.head.appendChild(s);});
+}
+/* ดึงข้อความจาก PDF แล้วประกอบกลับเป็นบรรทัดตามพิกัด y */
 async function pdfLines(file){
   if(!window.pdfjsLib) await loadScript(PDFJS_SRC);
   pdfjsLib.GlobalWorkerOptions.workerSrc=PDFJS_WORKER;
@@ -903,9 +769,13 @@ async function pdfLines(file){
   for(let p=1;p<=doc.numPages;p++){
     const c=await (await doc.getPage(p)).getTextContent();
     const rows={};
-    c.items.forEach(it=>{const y=Math.round(it.transform[5]/3);(rows[y]=rows[y]||[]).push([it.transform[4],it.str]);});
+    c.items.forEach(it=>{
+      const y=Math.round(it.transform[5]/3);
+      (rows[y]=rows[y]||[]).push([it.transform[4],it.str]);
+    });
     Object.keys(rows).sort((x,y)=>y-x).forEach(y=>{
-      text+=rows[y].sort((m,n)=>m[0]-n[0]).map(m=>m[1]).join(" ").replace(/\s+/g," ").trim()+"\n";});
+      text+=rows[y].sort((m,n)=>m[0]-n[0]).map(m=>m[1]).join(" ").replace(/\s+/g," ").trim()+"\n";
+    });
   }
   return {text,doc};
 }
@@ -916,450 +786,180 @@ async function pdfPageImage(doc,n){
   await page.render({canvasContext:cv.getContext("2d"),viewport:vp}).promise;
   return new Promise(r=>cv.toBlob(r,"image/png"));
 }
+/* ขยาย + เพิ่มคอนทราสต์ ก่อน OCR */
 function prep(file){
-  return new Promise(res=>{const img=new Image();
-    img.onload=()=>{const sc=Math.min(2.5,Math.max(1,1800/img.width));
-      const cv=document.createElement("canvas");cv.width=img.width*sc;cv.height=img.height*sc;
-      const cx=cv.getContext("2d");cx.filter="grayscale(1) contrast(1.4)";
-      cx.drawImage(img,0,0,cv.width,cv.height);cv.toBlob(b=>res(b),"image/png");};
-    img.src=URL.createObjectURL(file);});
+  return new Promise(res=>{
+    const img=new Image();
+    img.onload=()=>{
+      const sc=Math.min(2.5,Math.max(1,1800/img.width));
+      const cv=document.createElement("canvas");
+      cv.width=img.width*sc;cv.height=img.height*sc;
+      const cx=cv.getContext("2d");
+      cx.filter="grayscale(1) contrast(1.4)";
+      cx.drawImage(img,0,0,cv.width,cv.height);
+      cv.toBlob(b=>res(b),"image/png");
+    };
+    img.src=URL.createObjectURL(file);
+  });
 }
 async function ocrBlob(blob,set){
   if(!window.Tesseract) await loadScript(TESS_SRC);
-  const w=await Tesseract.createWorker("eng",1,{logger:m=>{
+  const worker=await Tesseract.createWorker("eng",1,{logger:m=>{
     if(m.status==="recognizing text") set(`กำลังอ่านภาพ ${Math.round(m.progress*100)}%`);}});
   set("อ่านรอบที่ 1 — ทั้งหน้า");
-  const t1=(await w.recognize(blob)).data.text;
+  const t1=(await worker.recognize(blob)).data.text;
   set("อ่านรอบที่ 2 — เฉพาะรหัสวิชาและเกรด");
-  await w.setParameters({tessedit_char_whitelist:"ABCDEFGIMSUW+0123456789()-/ "});
-  const t2=(await w.recognize(blob)).data.text;
-  await w.terminate();
+  await worker.setParameters({tessedit_char_whitelist:"ABCDEFGIMSUW+0123456789()-/ "});
+  const t2=(await worker.recognize(blob)).data.text;
+  await worker.terminate();
   return mergeRuns(parseText(t1),parseText(t2),[t1,t2]);
 }
-function showRead(out,sid,term,src){
-  PENDING=out;
-  const box=$("#rPreview");
-  if(!out.length){ box.innerHTML=`<div class="note">ไม่พบรหัสวิชาในไฟล์ — ลองใช้ PDF จากระบบทะเบียน หรือครอบภาพเฉพาะตาราง</div>`; return; }
-  const noG=out.filter(r=>!r.grade).length;
-  box.innerHTML=`
-    <div class="small muted" style="margin-bottom:6px">อ่านได้ ${out.length} วิชา จาก${src} — ตรวจก่อนบันทึก</div>
-    ${noG?`<div class="note" style="margin-bottom:8px">อ่านเกรดไม่ได้ ${noG} วิชา — เลือกเกรดเองในตาราง</div>`:""}
-    <div class="tbl-wrap"><table><thead><tr><th>รหัสวิชา</th><th>ชื่อวิชา</th><th class="num">นก.</th><th>เกรด</th></tr></thead>
-    <tbody>${out.map((r,i)=>`<tr>
-      <td class="small"><b>${esc(r.code)}</b></td><td class="small">${esc(r.name||"—")}</td>
-      <td class="num"><input type="number" min="1" max="9" value="${r.credits}" data-rc="${i}" style="width:56px;padding:3px 6px"></td>
-      <td><select data-rg="${i}" style="width:80px;padding:3px 6px;${r.grade?"":"border-color:var(--red)"}">${
-        ['',...ALLG].map(g=>`<option ${g===r.grade?"selected":""}>${g}</option>`).join("")}</select></td>
-    </tr>`).join("")}</tbody></table></div>
-    <div style="display:flex;gap:8px;margin-top:10px">
-      <button class="btn primary" id="btnRCommit">บันทึกเข้าระบบ${term?` (ภาค ${esc(term)})`:""}</button>
-      <button class="btn" id="btnRCancel">ยกเลิก</button>
-    </div>`;
-  box.querySelectorAll("[data-rg]").forEach(sl=>sl.onchange=()=>{
-    PENDING[+sl.dataset.rg].grade=sl.value; sl.style.borderColor=sl.value?"":"var(--red)";});
-  box.querySelectorAll("[data-rc]").forEach(ip=>ip.onchange=()=>PENDING[+ip.dataset.rc].credits=+ip.value||3);
-  $("#btnRCommit").onclick=()=>{
-    const ok=PENDING.filter(r=>r.grade);
-    if(!ok.length) return alert("ยังไม่ได้เลือกเกรดสักวิชา");
-    ok.forEach(r=>{
-      const i=DB.grades.findIndex(g=>g.sid===sid && g.code===r.code);
-      const row={sid, code:r.code, name:r.name, credits:r.credits, grade:r.grade, term};
-      if(i>=0) DB.grades[i]=row; else DB.grades.push(row);
-    });
-    save(); PENDING=[]; $("#rPreview").innerHTML=""; $("#rMsg").innerHTML="";
-    renderAll(); alert(`บันทึกแล้ว ${ok.length} วิชา`);
-  };
-  $("#btnRCancel").onclick=()=>{ box.innerHTML=""; PENDING=[]; };
-}
-$("#btnRead").onclick=async()=>{
-  const sid=$("#fileStu").value, f=$("#rFile").files[0];
-  if(!sid) return alert("เพิ่มนักศึกษาก่อน แล้วเลือกชื่อ");
+
+$("#btnOcr").onclick=async()=>{
+  const f=$("#imgFile").files[0];
   if(!f) return alert("เลือกไฟล์ PDF หรือภาพก่อน");
-  const msg=$("#rMsg"), set=t=>msg.innerHTML=`<span class="pill warn">${esc(t)}</span>`;
-  const isPdf=f.type==="application/pdf"||/\.pdf$/i.test(f.name);
+  const msg=$("#ocrMsg"), set=t=>msg.innerHTML=`<span class="pill warn">${esc(t)}</span>`;
+  const isPdf = f.type==="application/pdf" || /\.pdf$/i.test(f.name);
   try{
-    let out=[],src="";
+    let out=[], src="";
     if(isPdf){
       set("กำลังเปิดไฟล์ PDF...");
       const {text,doc}=await pdfLines(f);
-      out=parseText(text); src="ไฟล์ PDF (ข้อความจริง)";
-      if(!out.length){
-        set("PDF สแกน — กำลังใช้ตัวอ่านภาพ...");
-        for(let p=1;p<=Math.min(doc.numPages,3);p++){
-          (await ocrBlob(await pdfPageImage(doc,p),set)).forEach(r=>{ if(!out.some(x=>x.code===r.code)) out.push(r); });
+      const r=parseText(text);
+      out=r.out; src="ไฟล์ PDF (ข้อความจริง)";
+      if(!out.length){            /* PDF สแกน = ไม่มีข้อความ → ใช้ OCR แทน */
+        set("ไฟล์นี้เป็น PDF สแกน — กำลังอ่านด้วยตัวอ่านภาพ...");
+        const pages=Math.min(doc.numPages,3);
+        for(let p=1;p<=pages;p++){
+          const rows=await ocrBlob(await pdfPageImage(doc,p),set);
+          rows.forEach(r2=>{ if(!out.some(x=>x.code===r2.code)) out.push(r2); });
         }
         src="PDF สแกน (อ่านจากภาพ)";
       }
-    }else{ out=await ocrBlob(await prep(f),set); src="ภาพ"; }
-    msg.innerHTML=out.length?`<span class="pill ok">อ่านได้ ${out.length} วิชา</span>`:`<span class="pill bad">ไม่พบรหัสวิชาในไฟล์</span>`;
-    showRead(out,sid,$("#rTerm").value.trim(),src);
-  }catch(e){ msg.innerHTML=`<span class="pill bad">${esc(e.message||"อ่านไฟล์ไม่สำเร็จ")}</span>`; }
-};
-
-/* ---- CSV ---- */
-function parseCSV(text){
-  const out=[]; let row=[], cell="", q=false;
-  text = text.replace(/^\uFEFF/,"");
-  for(let i=0;i<text.length;i++){
-    const ch = text[i];
-    if(q){
-      if(ch==='"' && text[i+1]==='"'){ cell+='"'; i++; }
-      else if(ch==='"') q=false;
-      else cell+=ch;
-    } else if(ch==='"') q=true;
-    else if(ch===","){ row.push(cell); cell=""; }
-    else if(ch==="\n"){ row.push(cell); out.push(row); row=[]; cell=""; }
-    else if(ch!=="\r") cell+=ch;
-  }
-  if(cell||row.length){ row.push(cell); out.push(row); }
-  return out.filter(r=>r.some(c=>c.trim()!==""));
-}
-$("#csv").onchange = e=>{
-  const file = e.target.files[0]; if(!file) return;
-  const fr = new FileReader();
-  fr.onload = ()=>{
-    const rows = parseCSV(fr.result);
-    if(rows.length<2){ msg("ไฟล์ว่างหรืออ่านไม่ได้ ตรวจว่าบันทึกเป็น CSV (UTF-8)","bad"); return; }
-    rows.shift();
-    let nStu=0, nGr=0, skip=0;
-    rows.forEach(r=>{
-      const [sid,name,code,cname,cr,grade,term] = r.map(x=>(x||"").trim());
-      if(!sid || !code){ skip++; return; }
-      if(!DB.students.some(s=>s.id===sid)){
-        DB.students.push({id:sid, name:name||sid, track: guessTrack(rows, sid)});
-        nStu++;
-      }
-      const g = grade.toUpperCase();
-      DB.grades.push({
-        sid, code:code.toUpperCase(),
-        name: cname || INDEX[code.toUpperCase()]?.name || "",
-        credits: Number(cr) || INDEX[code.toUpperCase()]?.credit || 3,
-        grade: g || "—", term: term||""
-      });
-      nGr++;
-    });
-    save(); renderAll();
-    msg(`นำเข้าแล้ว — นักศึกษาใหม่ ${nStu} คน, รายวิชา ${nGr} รายการ${skip?`, ข้าม ${skip} แถวที่ข้อมูลไม่ครบ`:""}`,"ok");
-    e.target.value="";
-  };
-  fr.readAsText(file,"utf-8");
-};
-function guessTrack(rows, sid){
-  const cnt={JN:0,PR:0,BC:0};
-  rows.forEach(r=>{ if((r[0]||"").trim()!==sid) return;
-    const c=(r[2]||"").trim().toUpperCase();
-    const i=INDEX[c]; if(i&&i.track) cnt[i.track]++; });
-  return Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a])[0];
-}
-function msg(t,k){ $("#csvMsg").innerHTML = `<span class="pill ${k}">${esc(t)}</span>`; }
-
-$("#btnTpl").onclick = ()=>{
-  const head = "รหัสนักศึกษา,ชื่อ-สกุล,รหัสวิชา,ชื่อวิชา,หน่วยกิต,เกรด,ภาคเรียน\n";
-  const sample = [
-    "65041234501,นางสาวกานต์ธิดา ศรีชัย,GE44001,ภาษาไทยเพื่อการสื่อสาร,3,A,1/2565",
-    "65041234501,นางสาวกานต์ธิดา ศรีชัย,CA31102,หลักนิเทศศาสตร์,3,B+,1/2565"
-  ].join("\n");
-  dl(head+sample+"\n","ตัวอย่างไฟล์ผลการเรียน.csv","text/csv;charset=utf-8");
-};
-$("#btnExpCsv").onclick = ()=>{
-  const head = "รหัสนักศึกษา,ชื่อ-สกุล,รหัสวิชา,ชื่อวิชา,หน่วยกิต,เกรด,ภาคเรียน\n";
-  const body = DB.grades.map(g=>{
-    const s = DB.students.find(x=>x.id===g.sid);
-    return [g.sid, s?.name||"", g.code, g.name, g.credits, g.grade, g.term||""]
-      .map(v=>`"${String(v).replace(/"/g,'""')}"`).join(",");
-  }).join("\n");
-  dl("\uFEFF"+head+body,"ผลการเรียน.csv","text/csv;charset=utf-8");
-};
-function dl(text,fname,type){
-  const a=document.createElement("a");
-  a.href=URL.createObjectURL(new Blob([text],{type}));
-  a.download=fname; a.click(); URL.revokeObjectURL(a.href);
-}
-
-/* ---- หลักสูตร ---- */
-function renderCurr(){
-  const total = ORDER.reduce((a,k)=>a+CUR[k].need,0);
-  $("#currSpine").innerHTML = ORDER.map(k=>
-    `<i style="width:${CUR[k].need/total*100}%;background:${CUR[k].color}" title="${CUR[k].label} ${CUR[k].need} นก."></i>`).join("");
-  $("#currKey").innerHTML = ORDER.map(k=>
-    `<span><i class="dot" style="background:${CUR[k].color}"></i>${CUR[k].label} · ${CUR[k].need}</span>`).join("") +
-    `<span><b>รวม ${total} หน่วยกิต</b></span>`;
-
-  $("#currList").innerHTML = ORDER.map(k=>{
-    const s = CUR[k];
-    let inner;
-    if(s.track){
-      inner = Object.keys(TRACKS).map(tr=>`
-        <div style="margin-top:10px">
-          <div class="small" style="font-weight:600;color:${s.color}">${TRACKS[tr].name}</div>
-          <div class="chips" style="margin-top:6px">${s.courses[tr].map(c=>
-            `<span class="chip"><b>${c[0]}</b> ${esc(c[1])} · ${c[2]}</span>`).join("")}</div>
-        </div>`).join("");
-    } else if(s.courses.length){
-      inner = `<div class="chips">${s.courses.map(c=>
-        `<span class="chip"><b>${c[0]}</b> ${esc(c[1])} · ${c[2]}</span>`).join("")}</div>`;
-    } else {
-      inner = `<p class="small muted" style="margin:0">เลือกได้อิสระตามเงื่อนไขหลักสูตร — ระบบจะนับรายวิชาที่อยู่นอกแผนของกลุ่มวิชาเอกมาลงหมวดนี้ให้อัตโนมัติ</p>`;
+    }else{
+      out=await ocrBlob(await prep(f),set);
+      src="ภาพ";
     }
-    return `<div class="card"><div class="pad">
-      <h3><span class="dot" style="background:${s.color};margin-right:6px"></span>${s.label}
-        <span class="muted small" style="font-weight:400">— ${s.need} หน่วยกิต${s.fixed?"":" (ไม่กำหนดรายวิชา)"}</span></h3>
-      ${inner}</div></div>`;
-  }).join("");
-}
-
-/* ---- โลโก้ ---- */
-const DEFAULT_LOGOS={
-  uni:"data:image/png;base64,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",
-  fac:"data:image/png;base64,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",
-  prog:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAMAAAC8EZcfAAABgFBMVEVY0uJslqDaE4YLHSifHmUmXGvd1OAaut6Z1d/YXZ0miauYoqkDMU0wkkbertCcuMQSaCojkDoicpRZk2R3FUycSXerzbRUeIZNZWzJGXlvATzKobk20t1gr8m3SoS4OIHBQn/9/f0HyPICSGkDZpG0W5cDVHfu6O0DeanHXKYDOFIDhLawZZjFYaYCW4PR9/nU19fLx8sElc2PA1Dt1+iHh4cC0fuWl5eR5e53d3cCi8MHcpoux+PZt9CoqKjHl7jSqMa6ZKO2d6Nv2Oas6vLMA3e2t7ctxdmyAmkSxNwGQlzXN403NzfFibDaSJLR6Oy7XKHZJ4knJydnZ2dXV1eNqLO7hau18/bJV5flxttKytoSdysYhTJHR0eyyNCxcpoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACpPSGhAAAAYHRSTlP///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9ebwvOAAAUOUlEQVR42u2dCVcayRbH6SCIYDDjEk3M5L0WsUQb6VZaIMrOwFMhEDbBDPr9v8W7t6q6u5q12ZI577w6M+MK/ev/Xet2JeOS/+HL9X/AfwAgifeDuWC2VusWcHVrtWwuHfTGyT8AkHjT2W5BCY9ZilKoBdNe8vsAST/XfQO2RiQSjUSjEXFFYeWjiFmo5ZaCXBSQpLNvcP0IhYugYg0UTcnnuZwNgxu+/ZZNk18KSNJdRQk3UKUexdoCr8ultX4/Hvd6++l0LpetFShqD9WET5Ran/wqQG9WodJFqDjd4/T4aCDgn8dd5gL0dwvZ+C8ARPHCCrVc2Il7EW+uVgij2pFeWOlqZL2AJFdQ+LUKWZvNYrHnUjLpg5VMJkvPsZjdXyHQwSPBTQvzeqNrLrw3Lp4i0MVKyaLrpVJ5ODHW5uZJ5d7lciVLMSviwS8aeWrp9JoASfqNqaBsGSrEYklX5d7gusXF/gsf6aq8uEqGmPH0VjgMYdWYD9ExYL8b7kGuCysB7nexUvHFUm3sopgPLtczv8VgTQnnI9FeuBtfNSABC0EoNhQjEkvFLwLdPVi0WETvA0dMJotg83sB9OGlWLIyAKgIPkJWCph+U6h6HA8se7J5Qg35cP+CvhYbeQkGTfGlYjK6kjEDUclHo+G39OoASZc5HzdMqWiocw/KxKa+9FmAvC8+G86CRSbsTEQHgBoEB0Qfv+VScZMHgKHJrBXzmb7KEdP5Bhqk0F8FIPW+qMKdpu7a5BbzxeYIxbrvC0tA98U6e1Ma0Mrx8oDxbti62VjxgRurNG9BQLelYb1ZjDGzgFdHwzWyJKAXgi7CYy7mu+e2fV6o7D8XK5gsHyrUNUBErNBv8aUA09S8b0HqfC+bqEClGJMXXTGOyO4wjTevKP0lAHP0JlnwFine/RJ4Qgao0MvGC2FMremFAY8VLJ7UvHUIROB7KcnLrhJ9p80XauYaJhwltyBgFizAX52kuaySjMnLr1iysknfDL8I4jXCuYUAa1A2I1T/WBEc52RzwdgYg8hEpIkqp6AX5RYAxCDLKxp/P+OOV0RIk/2mK0ZDZbqGrin2zdMIe0a3Zj6zulWqPIBRXtAmQVqac3MCHivI58W32qSFY9UDg5iLejUS9hW42MRYdk3If+AaVL8kdejiGmYaRVr7SvRq4IfUm5wCBukrqH7ofvdJeR0r+YB5v8T9MK/EHQPG8w0ev0kaHiV5Pau0icnBRwkbUPWIQ0CCCT6c5v53W6mvbXJVwvT68ExrFpT8LnEGGFAg7rNGfFRisrxeQhopNWVCOnSNCRC4mRoGGn11XV7neq7cMg1IAbZk4xqHEcA4FOBGgWB+Nu5unYtGISZZvG5kjBuOAOL+gwYwJKrbh5K87kX9CNNYOswtNx0QOiyW1qH+njwk5fWvJBT6zSQrrtFwegYgCh3ushQA3fkvmUJjxt58RjdsRHojHbZr2MD5BmZMGiC/aMAOVe+WBopXibL0MRkwbRgYX2P1B315zaEM3l6k3SH4f38KIKZoauCkUSZZYnwj6w4U5u+kEGHXnwR4HI428l5mYFqCWGXeUPrrd8NbNHK6ARKmJwLGsYQEuYFdpoEPNraCa3dDHpK1cDRcIJMAIc57Cvy0xMOKJ579773s2rPhA7tkfKTiuYZSTA4NDE2GaWCyf7PVq5F1E1KjMZEaNpcXAIOYYggrIda3c583tnpb/bXnGsxrSeZmtn2oy+6BVMATltm5ByLg+m1MW88K2wwpooQuscjRJqFoi5D4/s3G1hZ1zZWt+utOeUcbapNi95AMfVyn9BhA8gY58Jhu4m5PrB4h+xkAe997uVXRqZLnYtsN68Ij2RiT0F9jbQAvFAPZZRWRKC1yRXuNUyjg1vet+ErwXo8u3NsXdCGlZNvOMy/0YiD3RwG7Cq2DoDRrwg0XRBP3gHAVgUwOtzkdW263RxUlZJ1hrSdWZJeVY2gb6ANftTwQkwxT8PvX2vLW9djwGOLOiIRgy7zl8y4zRKK9LfgIvySEsAC49bSshq8W12OILyB8Fb0QvQsqshAmLrNNoDmmZOti4PsbFBD43r17Wi4b+oCL4SHZGV+hbbcm5MJb3GPkwMa1IUD0TBYiYg6EBYA330HA79+fnp7+tRUcVpGQuLcfDAb7s44o1D2cj6lH6a5gnV146lbPQCX0gjXNbbzLTILY52CI3Nv2SQefb26eGCBo+OPpe7SWDdJV24r2vn7918bGxn/gJuDDxte3KY8yD218Ic53CuviyGwMIQC+wMetsDVN4oDYCKZZH2hvYd8+o425gsD4492nT5/+stZ/zIVa32zUJjogOJxhX8pH5aOIFx0xTJ5pQDRqNsA4zpfitAyf2DdKuc+GjRHwB6x35hpCBA1vbvYPxjvq0UVo2+ILIR9Aeg53d89OrzyG8D62w/Mq+UaeiICAbFrYPkmIozBQ7LZGAYcUREPD2t9PjxXwkQJa5oV/DwOqF8rerufRyDU4i8QkByFrTLtcfNxrxvDwTk5BCdELhwENG//116d3+P2nH59Qwo2b/THtrXQRMh2QxUfII3l5+AQ80pCNsdxlBUDy1qObFShzI1vh/v4NIxwHyD77QfnAQd89od77GyNlsf74GLLxgXU7gr7m5z4jV0M9FgChgwhj7gb+h5FZEZXw5geVcAjwnQ3w6QnTOSB+Vobfo3NhGthIgBKZ1Fm/cKC4BQjFpde1onxoL79PNdx4siQ04xgxP4FlDw6+hsNfD/4NhN8xUoaN7LkIQZLZtvLf2ZE6sW/FKMBi0rcA0eQ51jOO2awH95n7Q5R+wgWBYSYZYAsXsjmNruPAWxjCfWNEQi/Y9tESEPNLZ2Lrf4IDoayZCV1snhANa6zTGjeNCe5/vjEYabyy6AXgcM1+qoekj3u97yBhfNjCAGgJeHq26504qaEMmFayJiB5ixhZ8H7suLKP9eRmQ0gpAHcQOB5zrIcEt3pPN/vZ4SQYCm0L9eNMmra9g0TSN7efLpame/BV7P725H5CIxfY4BIyHQ/eshPPEMVrvY19xR7DIQZoFGDP2c60zZMLx+RQOUxATYnQGKlMmRfFs28HWG/B596y6amNAakd7B+Iv7BzYQFigTv1eLwTX/2FTlxJoRFlYexiQYztTZKpO/nCXggElczuCkltf4PYs7RZ3xigRKZskE9OwM+6DT4DcbGRjBHEC04stU5CkqSOkTriB7Yo8dgBT6e4IAPEMG7wMHbxQpdmQbzIyLd86HHzZZSHtJjmXsUOgbYv0wCHw9gADJrijjXatF2k221uhQCRub8YQpK9xQJAT2f6lKbI3M4ApFNBLx2P3E8AlBLju+TO0cXwPsg9oo4H0zTECAU8pWsKYIxVCy3M234EzOdpGsRea1K7+ejpjDwweYUt+MXjow1ve5TQR5PM40XI6KBnAFZuGSBvFxggDo2wGZyUZWLS1XboMCAkBx+lMzZnIZMTtuXbgeFOi/5C6MoC3Jni0vcUMG7MFzhgfjqg7POf4zU8hxCrgY4keUIXLO1aiCDftvsCQ+VRs1mY/VgQ8G6agtyQ2M/MAyj/eX15KuCwii8gQqndPpICnU4g5XEfyiMxTAG5fuczAWPzA5b8fv/5qXEJujgi24BfeKQd7qX1xJEYw48m4KkJGJgJSOyA+a1ZgGDkb9eX56d2QpPvUXol4mbZ1mkxwCsBsDN11soBFYUDQq+QL8wEBMLL68vLc1x3AiAgPj4e7Ux6KGokwVDI4ju/kxz4YFQpWICKA0AkxHV+h0tQ8NETmFj7Yx7TbS2+qYCxUUBQc7YPstRyh4Dnd4alr5DPI1llzev1eWPjBTzjEXzuGDAsAEYcAcr1Hf8dvcIuvRjdnEnWdOrj3t57WHsfhYFM6MwGSF99OQvQNZxmItF83AkgIkp+pPPAOoOsGLDU8+39/ccfPz/AOvo4FMKmC1I+R4B9oZLgPp4D3jsbgXdwBco+0fWkD3+8/xvxPAHVCGJvKCS6IFMfAXccAdYEQNYsnNwveoLi495PkO8nCLj3Kk60QqILckBw42mAJ2Y3UxvqB5cAlD4YfJKg6o5lYLTwOV/TAfn4xdYP8k3oog2r/PH9z79hIWCAyOMiBCxs2Pf8cjpgkj0usXXUnDY5PF11bN2/Db6E2Nkehs5EQIvv8u512pNZepQD9iRhc0+CxyC77DHAnKcUYj7p/QfO9/fPD7a9kCTynZkBgmt3KuDJQx1nH+zwGAXEATXknOd7h8cUyEe6Ant7ng8UjyF+2KvbetyzMQJSvkv/5F2nDHvfL9DM5NksgW/c2Vd0cONIuKMPfP2ki+L9IVYUuOkzW7t4KhjYf+mvT8syt1+oZsJkATclOB50HMa+vffgchzvD7reewJ12R4gAuCVqN/1pTR9z+RiA8KaNTyqselW0f4QZ2rcAhMTjvPtifEr13dDNgVPHQPyCebQdCsXprOPCeO38aH73rb2VPszEfM5jSAgw/sGbeXO9BgpCYMFBthX6Lmu5zkO83gDDBHEe7+3V7ZtnL0m3xmvIja+a//rrHY1rhgxwmfU7OvYl8lb9zGI0LzQFfho39e/shm+BXhqCvgNAf1+dUod4ZU4GhFn1DQt5iZPMCcyqj5VHZ46dPgzGpPPMvC3b/7rbzNd0MemRdkxz0lKKziwJYU8V/wxDQO0DPztGxr42j/ZBfHwMj6t7obN552MxwuSghPSx41LHQmF8KWdrAU4wnc9xcI4xn9BF1SixtNEF38am4/glBpPryxzZtDngbbqSgQc5bucMdqirUzePMLFLZptRMIBVo4Xt3Fdwq7v6lQw8dmdEb8G39QYfmENVTeSH37aqYVpOR59HDvPE/VdxmdsR3Hd2fILrE3/lOlqnZ1HwCNQw8+L6aA/PU8xGS+fuF8+O+N7JKbf9fVMAfGBto9amB5PsJ1ZyLIWm8bxAmES29m9sk0c8B8rP5v23fQHyNTtSKUuk6288KcjDMA+HqeP4+PGBbpWisf3ogyQTrJEPq7fteSdHiJ0NJiPWgf7DUBSUCi2D09VzGncP3dP7esKB0V358P+Nz0HQhKsmI1Cd+TcDD1NrxDjQcocmUXaxf2afagk7ODsDtiZaojnIk2CvYhweMuEoUcLcW/34jyKoeP334FUgoJX5gBG0M/kC8x6yFJHAcPiiXRLLXzkGcA/de3UskjHhDq9s5tY3CBxA/uvN6/9kpM/GJDOFcQzmBagV1GCzk6QxUq+P//0n6NOOI4zhl0jgMP6SQ6PLpFAfBygfDz5YFFH6uzg3wDgc/0JaP5LvPi3b2xYeD7CJwIaCQb1Wyi/OgsI7dCzvb2Nc/NTI3tMYBNHMLYCJ73KawQE2Xf0IxzhW0dfzNMl5gMktnZ3rRmHYeBLv6TK6wVERq1z6LnYFs/nmKckxvsf57tcWD557r9Kw7sTAEj7ESxsXa5M+YQEyIyLeEsc7FuguVJfO9KR55EysudvpoXPzUW9D6cc0lJ4YwEzuoMkqO5I0qHnzHyIycNDqG8QR0D30TsHDCk7ACQpXXWar9RXfCx2uIvjYI/HDOK7u91dvwSZSZ1TO5IozwbUEyDhXG9c96qvrzuBTgdgJfo0bOfV0dGBUb5EW5sJmNF1XZV/01Izqdk+mCmT3wJXprKUnUWx9hsYU23iOM1kUrq+fsRhR8q0Mg4B1ZTWEqfNRG8nVs/XaosmQ1pVc6qg3rL96qDZaqZWzae5NVXQMJGZp5LQV5oS6k1NVvUV42VItdl0C4bR9TlLnZ4y7qnd4m+5wogFi6ipcqpqOBF+j8wFmNHLhlUTTRA04a5WtVXxJZpuvHutmmJQmSk3PwlQ01NmSmq1wGN0Yt7vkovIWlnHmy4bFSGlp9S5uxnqhyqvuXJqoMqJKpHVVciHCa9dtRcQbaF2SzdflxqAiClZd5eX5nMnqmBfUjWCAn1P1RbqBxMJs/NSB9VmW1WbzYS8pCeSaqvZFpKe2iYLN6ygvGlSNZFQ5VZ1oCbci6dErQoGyLhbg6oqlq3FO2rN7nKZZqqdajZ1Wc8sBphxN+GVrYFqBKCmmV3CKlp+XU+52+0BUd0QLotkRW0AHgjuopnNcWumwzgDTPD3aQ0yoEGqOSCp5jzhwkUi1UHVrQsHkxw0Jc4AU21+BQIlHi7TSmC4tJwlHS0Br2efVttaxixvZWxLEisBhD0AsdJjagDBMhgQKPekPcPWGfA53Z3Smuxe2lZAaFrC0f05AVSpVGatTGTabh3SmF6FsAHMMslMyPQEktNAVpvV1CBhBQXN/NDDtcorA8S3Je2yuG+BwjxIYU+XcOvlplwGG5ZbmJUy8Mt6GwRODIBfUyEqBqm2u20XFu/YWS5wHMV6IkVEvyJyM0HQEast8DBQs+xuQUusIkq5DT8DbCyO8MPEgNgyH/qeLMsyWSWgRquKbS+pVyFvy1W9XU0hRhu+ILI+wGSsAY/aVFW3hiKrA5VYuxzaWiYcZ1LH0y2CrYema7bYgU62qbWhd4KecUBVGaTwowoeQCARgbwgsmxu4FUUD3beMtFWDUgNoiVGHJskCLZOUF5aVaz6zWoVszhmSYgjiAQrj2BTBF/o5bn23XMNjzKtFl5hOHdhWJSxn0BfLGvYrOAGrTysUopaFtLL2gBpWtN0DL8xDRKBxlgtswo+dvABOTrlNDaWGL8lyphNEnOoQMzSm0mt+a/aZYNWdHLjSmpiprurbdXcR8zfTC74dLicMJtac+9iNyuL3DL8kLSW2SgsCGjCpOjmiu5JTd+nopZTCRpWGvW9Xw4ojDvR7zVMP1jkMphC6KREoxuaDGKqvxOwjIWBFX4cj5ZTZR5Gqo4hn0gtO9VZ/q8NIgiIamEEQGIGKh1CiGRo66KS3w7IXBI4MPuU0f/UzMpmECv9Pxuoaxkp/v//DfE/D/hfnOJGZJ8ZYZUAAAAASUVORK5CYII="
-};
-const LOGOS=[["uni","มหาวิทยาลัย","มรภ.\nอุดรธานี"],["fac","คณะวิทยาการจัดการ","คณะ"],["prog","สาขาวิชานิเทศศาสตร์","นิเทศ"]];
-const logoOf=k=>(DB.logos&&DB.logos[k])||DEFAULT_LOGOS[k]||"";
-function renderLogos(){
-  DB.logos = DB.logos || {uni:"",fac:"",prog:""};
-  if(!$("#logoBox")) return;
-  $("#logoBox").innerHTML = LOGOS.map(([k,t,ph])=>`
-    <div class="logo-slot">
-      <img src="${logoOf(k)}" alt="${t}">
-      <div class="small" style="font-weight:600">${t}</div>
-      <div style="display:flex;gap:6px;justify-content:center;margin-top:8px">
-        <label class="btn sm" style="width:auto">เลือกไฟล์<input type="file" accept="image/*" data-lg="${k}" hidden></label>
-        ${DB.logos[k]?`<button class="btn sm danger" data-lgdel="${k}">คืนค่าเดิม</button>`:""}
-      </div>
-    </div>`).join("");
-  $("#logoBox").querySelectorAll("[data-lg]").forEach(ip=>ip.onchange=e=>{
-    const f=e.target.files[0]; if(!f) return;
-    if(f.size>600000) return alert("ไฟล์ใหญ่เกินไป — ใช้ไฟล์ไม่เกิน 600 KB");
-    const fr=new FileReader();
-    fr.onload=()=>{ DB.logos[ip.dataset.lg]=fr.result; save(); renderAll(); };
-    fr.readAsDataURL(f);
-  });
-  $("#logoBox").querySelectorAll("[data-lgdel]").forEach(b=>b.onclick=()=>{
-    DB.logos[b.dataset.lgdel]=""; save(); renderAll();
-  });
-  $("#brandLogos").innerHTML = LOGOS.map(([k,t])=>`<img src="${logoOf(k)}" alt="${t}">`).join("");
-}
-function printLogos(){
-  return `<div class="print-logos">${LOGOS.map(([k,t])=>`<img src="${logoOf(k)}" alt="${t}">`).join("")}</div>`;
-}
-
-/* ---- ตั้งค่า ---- */
-function renderCfg(){
-  $("#cfgCredits").value = DB.cfg.credits;
-  $("#cfgGpa").value = DB.cfg.gpa;
-  $("#cfgRisk").value = DB.cfg.risk;
-  $("#cfgOfficer").value = DB.cfg.officer || "";
-}
-$("#btnSaveCfg").onclick = ()=>{
-  DB.cfg = {
-    credits: Number($("#cfgCredits").value)||128,
-    gpa: Number($("#cfgGpa").value)||2,
-    risk: Number($("#cfgRisk").value)||12,
-    officer: $("#cfgOfficer").value.trim()
-  };
-  save(); renderAll(); alert("บันทึกเกณฑ์แล้ว");
-};
-$("#btnExp").onclick = ()=>{
-  const d = new Date(), p=n=>String(n).padStart(2,"0");
-  dl(JSON.stringify(DB,null,2), `สำรองตรวจจบ_${d.getFullYear()+543}${p(d.getMonth()+1)}${p(d.getDate())}.json`, "application/json");
-};
-$("#imp").onchange = e=>{
-  const f=e.target.files[0]; if(!f) return;
-  const fr=new FileReader();
-  fr.onload=()=>{
-    try{
-      const d=JSON.parse(fr.result);
-      if(!d.students||!d.grades) throw 0;
-      if(!confirm("กู้คืนจะเขียนทับข้อมูลปัจจุบันทั้งหมด ดำเนินการต่อ?")) return;
-      DB=d; DB.cfg = DB.cfg || {credits:128,gpa:2,risk:12,officer:""};
-      save(); renderAll(); alert("กู้คืนข้อมูลแล้ว");
-    }catch(err){ alert("ไฟล์ไม่ถูกต้อง — ต้องเป็นไฟล์สำรองของระบบนี้"); }
-    e.target.value="";
-  };
-  fr.readAsText(f);
-};
-$("#btnWipe").onclick = ()=>{
-  if(!confirm("ลบข้อมูลทั้งหมดในเครื่องนี้ถาวร?")) return;
-  localStorage.removeItem(KEY); DB=load(); renderAll(); alert("ลบข้อมูลแล้ว");
+    msg.innerHTML=out.length
+      ? `<span class="pill ok">อ่านได้ ${out.length} วิชา จาก${src} — ตรวจในตารางด้านล่าง</span>`
+      : `<span class="pill bad">ไม่พบรหัสวิชาในไฟล์ — ลองใช้ไฟล์ PDF จากระบบทะเบียน หรือครอบภาพเฉพาะตาราง</span>`;
+    showPreview(out,[],$("#iTerm").value.trim(),src);
+    if(out.length) $("#pPreview").scrollIntoView({behavior:"smooth",block:"center"});
+  }catch(e){
+    msg.innerHTML=`<span class="pill bad">${esc(e.message||"อ่านไฟล์ไม่สำเร็จ")}</span>`;
+  }
 };
 
-/* =========================================================
-   5) ใบตรวจจบรายบุคคล
-   ========================================================= */
-function openSheet(sid){
-  const a = audit(sid);
-  $("#shName").textContent = a.st.name + " · " + a.st.id;
+/* ================= 3) รายภาคเรียน ================= */
+function renderTerm(){
+  const terms={};
+  DB.grades.forEach(r=>{const t=(r.term||"").trim()||"ยังไม่ระบุภาคเรียน";(terms[t]=terms[t]||[]).push(r);});
+  const keys=Object.keys(terms).sort();
+  if(!keys.length){$("#termList").innerHTML=`<div class="card"><div class="empty"><b>ยังไม่มีข้อมูล</b>กรอกเกรดที่หน้า “กรอกเกรด” แล้วใส่ภาคเรียน เช่น 1/2565</div></div>`;return;}
+  let cgp=0,cgc=0;
+  $("#termList").innerHTML=keys.map(t=>{
+    const rows=terms[t];let gp=0,gc=0;
+    rows.forEach(r=>{if(r.grade in GP){gp+=GP[r.grade]*r.credits;gc+=r.credits;}});
+    cgp+=gp;cgc+=gc;
+    const cr=rows.filter(r=>(r.grade in GP&&r.grade!=="F")||r.grade==="S").reduce((a,r)=>a+r.credits,0);
+    return `<div class="termcard">
+      <div class="th"><span class="dot" style="background:var(--orange)"></span>${esc(t)}
+        <span class="gp">${cr} หน่วยกิต · เกรดเฉลี่ยภาคนี้ ${gc?(gp/gc).toFixed(2):"—"} · สะสม ${cgc?(cgp/cgc).toFixed(2):"—"}</span></div>
+      <div class="tb"><table><tbody>${rows.map(r=>`<tr>
+        <td style="width:90px"><b>${esc(r.code)}</b></td>
+        <td>${esc(r.name||INDEX[r.code]?.name||"—")}</td>
+        <td class="num" style="width:44px">${r.credits}</td>
+        <td style="width:60px"><span class="pill ${(r.grade in GP&&r.grade!=="F")?"ok":"bad"}">${esc(r.grade)}</span></td>
+      </tr>`).join("")}</tbody></table></div>
+    </div>`;}).join("");
+}
 
-  const secHTML = ORDER.map(k=>{
-    const s = a.sec[k];
-    const pct = Math.min(100, s.need? s.earned/s.need*100 : 100);
-    const cls = s.earned>=s.need ? "done" : (s.earned>0?"short":"");
+/* ================= 4) ผลเช็คจบ ================= */
+function renderResult(){
+  const a=audit();
+  if(!DB.grades.length){$("#result").innerHTML=`<div class="card"><div class="empty"><b>ยังไม่ได้กรอกเกรด</b>ไปที่หน้า “กรอกเกรด” แล้วเลือกเกรดของวิชาที่เรียนผ่านมาแล้ว</div></div>`;return;}
+  const today=new Date().toLocaleDateString("th-TH",{year:"numeric",month:"long",day:"numeric"});
+
+  const secHTML=ORDER.map(k=>{const s=a.sec[k];
+    const pct=Math.min(100,s.earned/s.need*100);
+    const cls=s.earned>=s.need?"done":(s.earned?"short":"");
     return `<div class="sec-row">
-      <div class="t"><span class="dot" style="background:${s.color};margin-right:6px"></span>${s.label}</div>
+      <div class="t"><span class="dot" style="background:${s.color}"></span>${s.label}</div>
       <div class="v">${s.earned} / ${s.need} ${s.earned>=s.need?"✔":""}</div>
-      <div class="bar ${cls}"><i style="width:${pct}%"></i></div>
-    </div>`;
-  }).join("");
+      <div class="bar ${cls}"><i style="width:${pct}%"></i></div></div>`;}).join("");
 
-  const missBySec = {};
-  a.missing.forEach(m=>{ (missBySec[m.sec] = missBySec[m.sec]||[]).push(m); });
-  const missHTML = a.missing.length ? Object.keys(missBySec).map(k=>`
-    <div style="margin-bottom:10px">
-      <div class="small" style="font-weight:600">${CUR[k].label}</div>
-      <div class="chips" style="margin-top:5px">${missBySec[k].map(m=>
-        `<span class="chip miss"><b>${m.code}</b> ${esc(m.name)} · ${m.credit} นก.</span>`).join("")}</div>
-    </div>`).join("")
-    : `<p class="small" style="margin:0;color:var(--green);font-weight:600">เรียนครบทุกรายวิชาบังคับแล้ว</p>`;
+  const byS={};a.missing.forEach(m=>(byS[m.sec]=byS[m.sec]||[]).push(m));
+  const missHTML=a.missing.length?Object.keys(byS).map(k=>`
+    <div style="margin-bottom:10px"><div class="small" style="font-weight:600">${CUR[k].label}</div>
+    <div class="chips" style="margin-top:5px">${byS[k].map(m=>`<span class="chip miss"><b>${m.code}</b> ${esc(m.name)} · ${m.credit}</span>`).join("")}</div></div>`).join("")
+    :`<p class="small" style="margin:0;color:var(--green);font-weight:600">เรียนครบทุกรายวิชาบังคับแล้ว</p>`;
 
-  const elecShort = ["TRACK_ELEC","RELATED","FREE"].filter(k=>a.sec[k].earned < a.sec[k].need)
-    .map(k=>`${CUR[k].label} ขาด ${a.sec[k].need - a.sec[k].earned} หน่วยกิต`);
+  const elec=["TRACK_ELEC","RELATED","FREE"].filter(k=>a.sec[k].earned<a.sec[k].need)
+    .map(k=>`${CUR[k].label} — ยังต้องเรียนอีก ${a.sec[k].need-a.sec[k].earned} หน่วยกิต`);
 
-  const chk = [
-    ["หน่วยกิตสะสม", `${a.earnedTotal} / ${DB.cfg.credits}`, a.earnedTotal>=DB.cfg.credits],
-    ["เกรดเฉลี่ยสะสม", a.gpa===null?"—":a.gpa.toFixed(2)+` (เกณฑ์ ≥ ${DB.cfg.gpa.toFixed(2)})`, a.gpa!==null&&a.gpa>=DB.cfg.gpa],
-    ["ครบทุกหมวดวิชา", a.shortCredits?`ขาดรวม ${a.shortCredits} หน่วยกิต`:"ครบทุกหมวด", a.shortCredits===0],
-    ["ฝึกประสบการณ์วิชาชีพ (CA38401)", a.intern?"ผ่านแล้ว":"ยังไม่ผ่าน", a.intern],
-    ["ไม่มีผลการเรียนค้าง (F / I / W)", a.pending.length?`ค้าง ${a.pending.length} รายวิชา`:"ไม่มี", a.pending.length===0]
+  const chk=[
+    ["หน่วยกิตสะสม",`${a.earned} / ${NEED_TOTAL}`,a.earned>=NEED_TOTAL],
+    ["เกรดเฉลี่ยสะสม",a.gpa===null?"—":`${a.gpa.toFixed(2)} (ต้อง ≥ ${NEED_GPA.toFixed(2)})`,a.gpa!==null&&a.gpa>=NEED_GPA],
+    ["ครบทุกหมวดวิชา",a.short?`ยังขาดรวม ${a.short} หน่วยกิต`:"ครบทุกหมวด",a.short===0],
+    ["ฝึกประสบการณ์วิชาชีพ (CA38401)",a.intern?"ผ่านแล้ว":"ยังไม่ผ่าน",a.intern],
+    ["ไม่มีผลการเรียนค้าง (F / I / W)",a.pending.length?`ค้าง ${a.pending.length} วิชา`:"ไม่มี",a.pending.length===0]
   ];
+  const pend=a.pending.length?`<div class="chips" style="margin-top:8px">${a.pending.map(p=>
+    `<span class="chip miss"><b>${esc(p.code)}</b> ${esc(p.name||"")} · ${esc(p.grade)}</span>`).join("")}</div>`:"";
 
-  const pendHTML = a.pending.length ? `<div class="chips" style="margin-top:8px">${a.pending.map(p=>
-    `<span class="chip miss"><b>${esc(p.code)}</b> ${esc(p.name||INDEX[p.code]?.name||"")} · ${esc(p.grade)}</span>`).join("")}</div>` : "";
+  $("#result").innerHTML=`
+  <div class="print-only print-head">${printLogos()}<b>ใบตรวจสอบสำเร็จการศึกษา (เบื้องต้น)</b>
+    <span>สาขาวิชานิเทศศาสตร์ คณะวิทยาการจัดการ มหาวิทยาลัยราชภัฏอุดรธานี</span></div>
 
-  const today = new Date().toLocaleDateString("th-TH",{year:"numeric",month:"long",day:"numeric"});
-
-  $("#shBody").innerHTML = `
-  <div class="print-only print-head">
-    ${printLogos()}
-    <b>ใบตรวจสอบสำเร็จการศึกษา (เบื้องต้น)</b>
-    <span>สาขาวิชานิเทศศาสตร์ คณะวิทยาการจัดการ มหาวิทยาลัยราชภัฏอุดรธานี</span>
-  </div>
-
-  <div class="card" style="margin-bottom:14px"><div class="pad">
-    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-      ${a.st.photo?`<img src="${a.st.photo}" class="avatar-md" alt="">`:""}
+  <div class="card"><div class="pad">
+    <div class="big">
+      ${DB.me.photo?`<img src="${DB.me.photo}" class="avatar-md" alt="">`:""}
       <div>
-        <div class="display" style="font-size:20px">${esc(a.st.name)}</div>
-        <div class="small muted">${esc(a.st.id)} · กลุ่มวิชาเอก${TRACKS[a.track].name}</div>
+        <div class="display" style="font-size:20px">${esc(DB.me.name||"— ยังไม่ได้กรอกชื่อ —")}</div>
+        <div class="small muted">${esc(DB.me.id||"")} · กลุ่มวิชาเอก${TRACKS[a.track].name}</div>
       </div>
       <div style="margin-left:auto;text-align:right">
         <span class="pill ${STATUS[a.status].c}" style="font-size:14px">${STATUS[a.status].t}</span>
-        <div class="small muted" style="margin-top:4px">ณ วันที่ ${today}</div>
+        <div class="small muted" style="margin-top:4px">ตรวจ ณ วันที่ ${today}</div>
       </div>
     </div>
-    <div class="spine" style="margin-top:14px">
-      ${ORDER.map(k=>{
-        const s=a.sec[k], need=s.need, done=Math.min(s.earned,need), left=need-done;
-        const tot=DB.cfg.credits;
-        return `<i style="width:${done/tot*100}%;background:${s.color}"></i>` +
-               (left?`<i style="width:${left/tot*100}%;background:#F0E6EE"></i>`:"");
-      }).join("")}
+    <div class="spine" style="margin-top:14px">${ORDER.map(k=>{
+      const s=a.sec[k],done=Math.min(s.earned,s.need),left=s.need-done;
+      return `<i style="width:${done/NEED_TOTAL*100}%;background:${s.color}"></i>`+(left?`<i style="width:${left/NEED_TOTAL*100}%;background:#F0E6EE"></i>`:"");}).join("")}</div>
+    <div class="small muted" style="margin-top:8px">
+      <b>${a.earned} / ${NEED_TOTAL}</b> หน่วยกิต (นับตามเกณฑ์จบ) · สอบผ่านทั้งหมด ${a.rawPass} หน่วยกิต · เกรดเฉลี่ย ${a.gpa===null?"—":a.gpa.toFixed(2)} · ${a.short?`ยังขาด ${a.short} หน่วยกิต`:"ครบตามโครงสร้างหลักสูตร"}
     </div>
-    <div class="small muted" style="margin-top:8px"><b>${a.earnedTotal} / ${DB.cfg.credits}</b> หน่วยกิต (นับตามเกณฑ์จบ) · สอบผ่านทั้งหมด ${a.rawPass} หน่วยกิต — ${a.shortCredits?`ยังขาด ${a.shortCredits} หน่วยกิต`:"ครบตามโครงสร้างหลักสูตร"}</div>
-    ${a.rawPass>a.earnedTotal?`<div class="note" style="margin-top:10px">มี ${a.rawPass-a.earnedTotal} หน่วยกิตที่สอบผ่านแล้วแต่เกินเพดานหมวดวิชา จึงไม่นับเข้าเกณฑ์จบ (ยอดดิบในระบบทะเบียนคือ ${a.rawPass} หน่วยกิต)</div>`:""}
+    ${a.rawPass>a.earned?`<div class="note" style="margin-top:10px">มี <b>${a.rawPass-a.earned} หน่วยกิต</b> ที่สอบผ่านแล้วแต่เกินเพดานของหมวดวิชา จึงไม่ถูกนับเข้าเกณฑ์จบ (ทะเบียนจะแสดงยอดสะสม ${a.rawPass} หน่วยกิต ซึ่งเป็นยอดดิบ)</div>`:""}
   </div></div>
 
   <div class="two">
-    <div class="card"><div class="pad">
-      <h3>ความคืบหน้ารายหมวด</h3>
-      ${secHTML}
-    </div></div>
-
-    <div class="grid" style="align-content:start">
-      <div class="card"><div class="pad">
-        <h3>เกณฑ์สำเร็จการศึกษา</h3>
-        ${chk.map(([t,v,ok])=>`
-          <div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px dashed var(--line)">
-            <span>${ok?"✅":"⚠️"}</span>
-            <span style="flex:1">${t}</span>
-            <b class="small" style="color:${ok?'var(--green)':'var(--red)'}">${v}</b>
-          </div>`).join("")}
-        ${pendHTML}
+    <div class="card"><div class="pad"><h3>ความคืบหน้ารายหมวด</h3>${secHTML}</div></div>
+    <div>
+      <div class="card"><div class="pad"><h3>เกณฑ์สำเร็จการศึกษา</h3>
+        ${chk.map(([t,v,ok])=>`<div style="display:flex;gap:8px;padding:7px 0;border-bottom:1px dashed var(--line)">
+          <span>${ok?"✅":"⚠️"}</span><span style="flex:1">${t}</span>
+          <b class="small" style="color:${ok?"var(--green)":"var(--red)"}">${v}</b></div>`).join("")}${pend}
       </div></div>
-
-      <div class="card"><div class="pad">
-        <h3>รายวิชาที่ยังต้องลงทะเบียน</h3>
-        ${missHTML}
-        ${elecShort.length?`<div class="note" style="margin-top:12px">${elecShort.join("<br>")}</div>`:""}
+      <div class="card"><div class="pad"><h3>วิชาที่ยังต้องลงทะเบียน</h3>${missHTML}
+        ${elec.length?`<div class="note" style="margin-top:12px">${elec.join("<br>")}</div>`:""}
       </div></div>
     </div>
   </div>
 
-  <div class="card" style="margin-top:14px"><div class="pad">
-    <h3>รายวิชาที่เรียนแล้ว (${a.rows.length} รายการ)</h3>
-    <div class="tbl-wrap" style="max-height:none">
-      <table><thead><tr><th>รหัสวิชา</th><th>ชื่อวิชา</th><th>หมวด</th><th class="num">นก.</th><th>เกรด</th></tr></thead>
-      <tbody>${a.rows.map(r=>{
-        let sec="—";
-        ORDER.forEach(k=>{ if(a.sec[k].taken.includes(r)) sec = CUR[k].label; });
-        const bad = !(r.grade in GP) || r.grade==="F";
-        return `<tr><td class="small"><b>${esc(r.code)}</b></td><td class="small">${esc(r.name||INDEX[r.code]?.name||"—")}</td>
-        <td class="small muted">${sec}</td><td class="num">${r.credits}</td>
-        <td><span class="pill ${bad?'bad':'ok'}">${esc(r.grade)}</span></td></tr>`;
-      }).join("")}</tbody></table>
-    </div>
-  </div></div>
-
-  <p class="small muted" style="margin-top:14px">
-    เอกสารนี้เป็นเครื่องมือช่วยตรวจสอบเบื้องต้นสำหรับอาจารย์ที่ปรึกษา ผลอย่างเป็นทางการให้ยึดตามสำนักส่งเสริมวิชาการและงานทะเบียน
-  </p>
-
-  <div class="print-credit">ระบบสารสนเทศเช็คผลการสำเร็จการศึกษา — พัฒนาโดย ผศ.ดร.เสกสรร สายสีสด สาขาวิชานิเทศศาสตร์ คณะวิทยาการจัดการ มหาวิทยาลัยราชภัฏอุดรธานี</div>
-
-  <div class="print-only sign">
-    <div><u>_</u>ลงชื่อ ..................................................<br>( ${esc(DB.cfg.officer||"อาจารย์ที่ปรึกษา")} )<br>ผู้ตรวจสอบ</div>
-    <div><u>_</u>ลงชื่อ ..................................................<br>( .................................................. )<br>ประธานหลักสูตร</div>
-  </div>`;
-
-  $("#sheet").classList.add("on");
-  document.body.style.overflow="hidden";
+  <p class="small muted">ผลนี้เป็นการตรวจสอบเบื้องต้นจากข้อมูลที่นักศึกษากรอกเอง ผลอย่างเป็นทางการยึดตามสำนักส่งเสริมวิชาการและงานทะเบียน</p>
+  <div class="print-credit">ระบบสารสนเทศเช็คผลการสำเร็จการศึกษา — พัฒนาโดย ผศ.ดร.เสกสรร สายสีสด สาขาวิชานิเทศศาสตร์ คณะวิทยาการจัดการ มหาวิทยาลัยราชภัฏอุดรธานี</div>`;
 }
-$("#btnClose").onclick = ()=>{ $("#sheet").classList.remove("on"); document.body.style.overflow=""; };
-$("#sheet").onclick = e=>{ if(e.target.id==="sheet") $("#btnClose").click(); };
-$("#btnPrint").onclick = ()=>{ document.body.classList.add("printing"); window.print(); };
-window.addEventListener("afterprint", ()=>document.body.classList.remove("printing"));
-document.addEventListener("keydown",e=>{ if(e.key==="Escape" && $("#sheet").classList.contains("on")) $("#btnClose").click(); });
-
-/* =========================================================
-   6) ข้อมูลตัวอย่าง
-   ========================================================= */
-$("#btnDemo").onclick = ()=>{
-  if(DB.students.length && !confirm("ระบบจะเพิ่มนักศึกษาตัวอย่าง 6 คนต่อท้ายข้อมูลเดิม ดำเนินการต่อ?")) return;
-  const names = [
-    ["65041234501","นางสาวกานต์ธิดา ศรีชัย","JN",1.00],
-    ["65041234502","นายภูริช วงศ์อินทร์","PR",0.96],
-    ["65041234503","นางสาวปิยะฉัตร โพธิ์ทอง","BC",0.80],
-    ["65041234504","นายธนกฤต แสนสุข","JN",0.62],
-    ["65041234505","นางสาวอริสา บุญมาก","PR",1.00],
-    ["65041234506","นายกิตติภพ ดวงจันทร์","BC",0.45]
-  ];
-  const grades = ["A","A","B+","B","B","C+","C","C","D+","D"];
-  names.forEach(([id,name,track,ratio])=>{
-    if(DB.students.some(s=>s.id===id)) return;
-    DB.students.push({id,name,track});
-    const plan = [];
-    ORDER.forEach(k=>{
-      const s = CUR[k];
-      const list = s.track ? s.courses[track] : s.courses;
-      if(!list || !list.length) return;
-      let acc = 0;
-      list.forEach(c=>{ if(k==="TRACK_ELEC" && acc>=12) return; acc+=c[2]; plan.push(c); });
-    });
-    /* วิชาที่สัมพันธ์ + เลือกเสรี ใช้วิชาของกลุ่มอื่นเป็นตัวแทน */
-    const other = Object.keys(TRACKS).filter(t=>t!==track)[0];
-    CUR.TRACK_ELEC.courses[other].slice(0,5).forEach(c=>plan.push(c));
-    const take = Math.max(6, Math.round(plan.length*ratio));
-    plan.slice(0,take).forEach((c,i)=>{
-      let g = grades[(i+id.charCodeAt(10))%grades.length];
-      if(ratio<0.7 && i%9===0) g="F";
-      DB.grades.push({sid:id, code:c[0], name:c[1], credits:c[2], grade:g, term:""});
-    });
-  });
-  save(); renderAll(); alert("ใส่ข้อมูลตัวอย่างแล้ว — คลิกชื่อนักศึกษาเพื่อดูใบตรวจจบ");
+$("#btnPrint").onclick=()=>window.print();
+$("#btnCsv").onclick=()=>{
+  if(!DB.grades.length)return alert("ยังไม่มีข้อมูล");
+  const head="รหัสนักศึกษา,ชื่อ-สกุล,รหัสวิชา,ชื่อวิชา,หน่วยกิต,เกรด,ภาคเรียน\n";
+  const body=DB.grades.map(g=>[DB.me.id,DB.me.name,g.code,g.name||INDEX[g.code]?.name||"",g.credits,g.grade,g.term||""]
+    .map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(",")).join("\n");
+  dl("\uFEFF"+head+body,`ผลการเรียน_${DB.me.id||"นักศึกษา"}.csv`,"text/csv;charset=utf-8");
 };
 
-/* ---- เริ่มระบบ ---- */
-function renderAll(){ renderStu(); renderGr(); renderDash(); renderCurr(); renderCfg(); renderLogos(); }
+/* ================= เริ่ม ================= */
+function renderAll(){renderMe();renderLogos();renderFill();renderTerm();renderResult();}
 renderAll();
 
 /* ---- ติดตั้งเป็นแอป (PWA) ---- */

@@ -833,7 +833,7 @@ $("#btnAddGr").onclick = ()=>{
   const info = INDEX[code];
   const credits = Number($("#gCredit").value) || info?.credit || 3;
   const name = $("#gName").value.trim() || info?.name || "";
-  DB.grades.push({sid, code, name, credits, grade:$("#gGrade").value, term:""});
+  DB.grades.push({sid, code, name, credits, grade:$("#gGrade").value, term:"", src:"manual"});
   save(); $("#gCode").value=""; $("#gName").value=""; $("#gCredit").value=""; renderAll();
 };
 $("#btnClearGr").onclick = ()=>{
@@ -992,7 +992,7 @@ function showRead(out,sid,term,src){
     if(!ok.length) return alert("ยังไม่ได้เลือกเกรดสักวิชา");
     ok.forEach(r=>{
       const i=DB.grades.findIndex(g=>g.sid===sid && g.code===r.code);
-      const row={sid, code:r.code, name:r.name, credits:r.credits, grade:r.grade, term:r.term||term};
+      const row={sid, code:r.code, name:r.name, credits:r.credits, grade:r.grade, term:r.term||term, src:"file"};
       if(i>=0) DB.grades[i]=row; else DB.grades.push(row);
     });
     save(); PENDING=[]; $("#rPreview").innerHTML=""; $("#rMsg").innerHTML="";
@@ -1060,6 +1060,7 @@ $("#csv").onchange = e=>{
       }
       const g = grade.toUpperCase();
       DB.grades.push({
+        src:"file",
         sid, code:code.toUpperCase(),
         name: cname || INDEX[code.toUpperCase()]?.name || "",
         credits: Number(cr) || INDEX[code.toUpperCase()]?.credit || 3,
@@ -1274,6 +1275,9 @@ function openSheet(sid){
       <div style="margin-left:auto;text-align:right">
         <span class="pill ${STATUS[a.status].c}" style="font-size:14px">${STATUS[a.status].t}</span>
         <div class="small muted" style="margin-top:4px">ณ วันที่ ${today}</div>
+        ${(()=>{const nm=a.rows.filter(r=>r.src!=="file").length;
+          return nm?`<div class="small" style="margin-top:4px"><span class="pill warn">กรอกมือ ${nm} วิชา</span></div>`
+                   :`<div class="small" style="margin-top:4px"><span class="pill ok">ข้อมูลจากไฟล์ทะเบียน</span></div>`;})()}
       </div>
     </div>
     <div class="spine" style="margin-top:14px">
